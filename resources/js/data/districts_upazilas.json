@@ -1,0 +1,2702 @@
+{
+    "Bagerhat": [
+        {
+            "upazila": "Bagerhat Sadar",
+            "id": 231610
+        },
+        {
+            "upazila": "Chitalmari",
+            "id": 231615
+        },
+        {
+            "upazila": "Fakirhat",
+            "id": 231611
+        },
+        {
+            "upazila": "Kachua",
+            "id": 231612
+        },
+        {
+            "upazila": "Mollahat",
+            "id": 231614
+        },
+        {
+            "upazila": "Mongla",
+            "id": 231616
+        },
+        {
+            "upazila": "Morrelganj",
+            "id": 231613
+        },
+        {
+            "upazila": "Rampal",
+            "id": 231609
+        },
+        {
+            "upazila": "Sharankhola",
+            "id": 231608
+        }
+    ],
+    "Bandarban": [
+        {
+            "upazila": "Alikadam",
+            "id": 231686
+        },
+        {
+            "upazila": "Bandarban Sadar",
+            "id": 231691
+        },
+        {
+            "upazila": "Lama",
+            "id": 231689
+        },
+        {
+            "upazila": "Naikhongchhari",
+            "id": 231690
+        },
+        {
+            "upazila": "Rowangchhari",
+            "id": 231692
+        },
+        {
+            "upazila": "Ruma",
+            "id": 231688
+        },
+        {
+            "upazila": "Thanchi",
+            "id": 231687
+        }
+    ],
+    "Barguna": [
+        {
+            "upazila": "Amtali",
+            "id": 231436
+        },
+        {
+            "upazila": "Bamna",
+            "id": 231431
+        },
+        {
+            "upazila": "Barguna Sadar",
+            "id": 231434
+        },
+        {
+            "upazila": "Betagi",
+            "id": 231433
+        },
+        {
+            "upazila": "Patharghata",
+            "id": 231432
+        },
+        {
+            "upazila": "Taltali",
+            "id": 231435
+        }
+    ],
+    "Barisal": [
+        {
+            "upazila": "Agailjhara",
+            "id": 231461
+        },
+        {
+            "upazila": "Airport Thana",
+            "id": 231470
+        },
+        {
+            "upazila": "Babuganj",
+            "id": 231467
+        },
+        {
+            "upazila": "Bakerganj",
+            "id": 231463
+        },
+        {
+            "upazila": "Banari Para",
+            "id": 231459
+        },
+        {
+            "upazila": "Barishal Sadar (Kotwali)",
+            "id": 231460
+        },
+        {
+            "upazila": "Bondar Thana",
+            "id": 231464
+        },
+        {
+            "upazila": "Gaurnadi",
+            "id": 231469
+        },
+        {
+            "upazila": "Hijla",
+            "id": 231462
+        },
+        {
+            "upazila": "Kawnia Thana",
+            "id": 231468
+        },
+        {
+            "upazila": "Kazirhat Thana",
+            "id": 411686
+        },
+        {
+            "upazila": "Mehendiganj",
+            "id": 231466
+        },
+        {
+            "upazila": "Muladi",
+            "id": 231465
+        },
+        {
+            "upazila": "Wazirpur",
+            "id": 231471
+        }
+    ],
+    "Bhola": [
+        {
+            "upazila": "Bhola Sadar",
+            "id": 231448
+        },
+        {
+            "upazila": "Burhanuddin",
+            "id": 231449
+        },
+        {
+            "upazila": "Char Fasson",
+            "id": 231447
+        },
+        {
+            "upazila": "Dakshin Aich Thana",
+            "id": 411687
+        },
+        {
+            "upazila": "Daulat khan",
+            "id": 231450
+        },
+        {
+            "upazila": "Dularhat Thana",
+            "id": 411649
+        },
+        {
+            "upazila": "Lalmohan",
+            "id": 231451
+        },
+        {
+            "upazila": "Mahipur Thana",
+            "id": 411688
+        },
+        {
+            "upazila": "Manpura",
+            "id": 231445
+        },
+        {
+            "upazila": "Shasihushan Thana",
+            "id": 411674
+        },
+        {
+            "upazila": "Tazumuddin",
+            "id": 231446
+        }
+    ],
+    "Bogra": [
+        {
+            "upazila": "Adamdighi",
+            "id": 231268
+        },
+        {
+            "upazila": "Bogra Sadar",
+            "id": 231269
+        },
+        {
+            "upazila": "Dhunat",
+            "id": 231259
+        },
+        {
+            "upazila": "Dupchachia",
+            "id": 231266
+        },
+        {
+            "upazila": "Gabtali",
+            "id": 231263
+        },
+        {
+            "upazila": "Kahaloo",
+            "id": 231260
+        },
+        {
+            "upazila": "Nandigram",
+            "id": 231262
+        },
+        {
+            "upazila": "Sariakandi",
+            "id": 231258
+        },
+        {
+            "upazila": "Shajahanpur",
+            "id": 231264
+        },
+        {
+            "upazila": "Sherpur",
+            "id": 231265
+        },
+        {
+            "upazila": "Shibganj",
+            "id": 231261
+        },
+        {
+            "upazila": "Sonatala",
+            "id": 231267
+        }
+    ],
+    "Brahmanbaria": [
+        {
+            "upazila": "Akhaura",
+            "id": 231715
+        },
+        {
+            "upazila": "Ashuganj",
+            "id": 231712
+        },
+        {
+            "upazila": "Banchharampur",
+            "id": 231720
+        },
+        {
+            "upazila": "Bijoynagar",
+            "id": 231718
+        },
+        {
+            "upazila": "Brahmanbaria Sadar",
+            "id": 231716
+        },
+        {
+            "upazila": "Kasba",
+            "id": 231717
+        },
+        {
+            "upazila": "Nabinagar",
+            "id": 231719
+        },
+        {
+            "upazila": "Nasirnagar",
+            "id": 231714
+        },
+        {
+            "upazila": "Sarail",
+            "id": 231713
+        }
+    ],
+    "Chandpur": [
+        {
+            "upazila": "Chandpur Sadar",
+            "id": 231722
+        },
+        {
+            "upazila": "Faridganj",
+            "id": 231726
+        },
+        {
+            "upazila": "Haim Char",
+            "id": 231721
+        },
+        {
+            "upazila": "Hajiganj",
+            "id": 231723
+        },
+        {
+            "upazila": "Kachua",
+            "id": 231728
+        },
+        {
+            "upazila": "Matlab Dakshin",
+            "id": 231727
+        },
+        {
+            "upazila": "Matlab Uttar",
+            "id": 231724
+        },
+        {
+            "upazila": "Shahrasti",
+            "id": 231725
+        }
+    ],
+    "Chapai Nababganj": [
+        {
+            "upazila": "Bholahat",
+            "id": 231270
+        },
+        {
+            "upazila": "Chapai Nababganj Sadar",
+            "id": 231271
+        },
+        {
+            "upazila": "Gomastapur",
+            "id": 231272
+        },
+        {
+            "upazila": "Nachole",
+            "id": 231273
+        },
+        {
+            "upazila": "Shibganj",
+            "id": 231274
+        }
+    ],
+    "Chittagong": [
+        {
+            "upazila": "Akborsah Thana",
+            "id": 231783
+        },
+        {
+            "upazila": "Anwara",
+            "id": 231789
+        },
+        {
+            "upazila": "Bakalia Thana",
+            "id": 231768
+        },
+        {
+            "upazila": "Bandar Thana",
+            "id": 231764
+        },
+        {
+            "upazila": "Banshkhali",
+            "id": 231763
+        },
+        {
+            "upazila": "Bayejid Bostami",
+            "id": 231778
+        },
+        {
+            "upazila": "Bhujpur Thana",
+            "id": 411680
+        },
+        {
+            "upazila": "Boalkhali",
+            "id": 231769
+        },
+        {
+            "upazila": "Chakbazar Thana",
+            "id": 231784
+        },
+        {
+            "upazila": "Chandanaish",
+            "id": 231785
+        },
+        {
+            "upazila": "Chandgaon Thana",
+            "id": 231779
+        },
+        {
+            "upazila": "Dakshin Rangunia Thana",
+            "id": 411690
+        },
+        {
+            "upazila": "Double Mooring Thana",
+            "id": 231770
+        },
+        {
+            "upazila": "EPZ Thana",
+            "id": 231765
+        },
+        {
+            "upazila": "Fatikchhari",
+            "id": 231786
+        },
+        {
+            "upazila": "Halishahar Thana",
+            "id": 231788
+        },
+        {
+            "upazila": "Hathazari",
+            "id": 231766
+        },
+        {
+            "upazila": "Karnafuli",
+            "id": 231767
+        },
+        {
+            "upazila": "Khulshi Thana",
+            "id": 231780
+        },
+        {
+            "upazila": "Kotwali Thana",
+            "id": 231771
+        },
+        {
+            "upazila": "Lohagara",
+            "id": 231790
+        },
+        {
+            "upazila": "Mirsarai",
+            "id": 231781
+        },
+        {
+            "upazila": "Pahartali Thana",
+            "id": 231773
+        },
+        {
+            "upazila": "Panchlaish Thana",
+            "id": 231762
+        },
+        {
+            "upazila": "Patenga Thana",
+            "id": 231775
+        },
+        {
+            "upazila": "Patiya",
+            "id": 231774
+        },
+        {
+            "upazila": "Rangunia",
+            "id": 231772
+        },
+        {
+            "upazila": "Raozan",
+            "id": 231776
+        },
+        {
+            "upazila": "Sandwip",
+            "id": 231787
+        },
+        {
+            "upazila": "Satkania",
+            "id": 231777
+        },
+        {
+            "upazila": "Shadarghat Thana",
+            "id": 231782
+        },
+        {
+            "upazila": "Sitakunda",
+            "id": 231791
+        },
+        {
+            "upazila": "Zorarganj Thana",
+            "id": 411657
+        }
+    ],
+    "Chuadanga": [
+        {
+            "upazila": "Alamdanga",
+            "id": 231634
+        },
+        {
+            "upazila": "Chuadanga Sadar",
+            "id": 231635
+        },
+        {
+            "upazila": "Damurhuda",
+            "id": 231636
+        },
+        {
+            "upazila": "Darshana Thana",
+            "id": 411702
+        },
+        {
+            "upazila": "Jiban Nagar",
+            "id": 231633
+        }
+    ],
+    "Comilla": [
+        {
+            "upazila": "Bangara Bazar Thana",
+            "id": 411681
+        },
+        {
+            "upazila": "Barura",
+            "id": 231750
+        },
+        {
+            "upazila": "Brahman Para",
+            "id": 231751
+        },
+        {
+            "upazila": "Burichang",
+            "id": 231752
+        },
+        {
+            "upazila": "Chandina",
+            "id": 231743
+        },
+        {
+            "upazila": "Chauddagram",
+            "id": 231738
+        },
+        {
+            "upazila": "Comilla Adarsha Sadar",
+            "id": 231753
+        },
+        {
+            "upazila": "Comilla Sadar Dakshin",
+            "id": 231739
+        },
+        {
+            "upazila": "Daudkandi",
+            "id": 231740
+        },
+        {
+            "upazila": "Debidwar",
+            "id": 231746
+        },
+        {
+            "upazila": "Homna",
+            "id": 231744
+        },
+        {
+            "upazila": "Laksam",
+            "id": 231747
+        },
+        {
+            "upazila": "Lalmai",
+            "id": 352505
+        },
+        {
+            "upazila": "Manoharganj",
+            "id": 231742
+        },
+        {
+            "upazila": "Meghna",
+            "id": 231741
+        },
+        {
+            "upazila": "Muradnagar",
+            "id": 231749
+        },
+        {
+            "upazila": "Nangalkot",
+            "id": 231745
+        },
+        {
+            "upazila": "Titas",
+            "id": 231748
+        }
+    ],
+    "Cox's Bazar": [
+        {
+            "upazila": "Chakaria",
+            "id": 231759
+        },
+        {
+            "upazila": "Cox's Bazar Sadar",
+            "id": 231760
+        },
+        {
+            "upazila": "Eidgaon",
+            "id": 415439
+        },
+        {
+            "upazila": "Eidgaon Thana",
+            "id": 411658
+        },
+        {
+            "upazila": "Kutubdia",
+            "id": 231755
+        },
+        {
+            "upazila": "Maheshkhali",
+            "id": 231757
+        },
+        {
+            "upazila": "Pekua",
+            "id": 231758
+        },
+        {
+            "upazila": "Ramu",
+            "id": 231754
+        },
+        {
+            "upazila": "Teknaf",
+            "id": 231756
+        },
+        {
+            "upazila": "Ukhia",
+            "id": 231761
+        }
+    ],
+    "Dhaka": [
+        {
+            "upazila": "Adabor Thana",
+            "id": 231476
+        },
+        {
+            "upazila": "Ashulia Thana",
+            "id": 411650
+        },
+        {
+            "upazila": "Badda Thana",
+            "id": 231496
+        },
+        {
+            "upazila": "Banani Thana",
+            "id": 231505
+        },
+        {
+            "upazila": "Bangshal Thana",
+            "id": 231477
+        },
+        {
+            "upazila": "Bhasan Tek Thana",
+            "id": 231508
+        },
+        {
+            "upazila": "Bhatara Thana",
+            "id": 231526
+        },
+        {
+            "upazila": "Biman Bandar Thana",
+            "id": 231510
+        },
+        {
+            "upazila": "Cantonment Thana",
+            "id": 231497
+        },
+        {
+            "upazila": "Chak Bazar Thana",
+            "id": 231519
+        },
+        {
+            "upazila": "Dakshinkhan Thana",
+            "id": 231478
+        },
+        {
+            "upazila": "Darus Salam Thana",
+            "id": 231479
+        },
+        {
+            "upazila": "Demra Thana",
+            "id": 231506
+        },
+        {
+            "upazila": "Dhamrai",
+            "id": 231507
+        },
+        {
+            "upazila": "Dhanmondi Thana",
+            "id": 231525
+        },
+        {
+            "upazila": "Dohar",
+            "id": 231490
+        },
+        {
+            "upazila": "Gendaria Thana",
+            "id": 231480
+        },
+        {
+            "upazila": "Gulshan Thana",
+            "id": 231509
+        },
+        {
+            "upazila": "Hatirjheel Thana",
+            "id": 411676
+        },
+        {
+            "upazila": "Hazaribagh Thana",
+            "id": 231481
+        },
+        {
+            "upazila": "Jatrabari Thana",
+            "id": 231482
+        },
+        {
+            "upazila": "Kadamtali Thana",
+            "id": 231513
+        },
+        {
+            "upazila": "Kafrul Thana",
+            "id": 231520
+        },
+        {
+            "upazila": "Kalabagan Thana",
+            "id": 231521
+        },
+        {
+            "upazila": "Kamrangir Char Thana",
+            "id": 231483
+        },
+        {
+            "upazila": "Keraniganj",
+            "id": 231492
+        },
+        {
+            "upazila": "Keraniganj Model Thana",
+            "id": 411651
+        },
+        {
+            "upazila": "Khilgaon Thana",
+            "id": 231514
+        },
+        {
+            "upazila": "Khilkhet Thana",
+            "id": 231491
+        },
+        {
+            "upazila": "Kotwali Thana",
+            "id": 231493
+        },
+        {
+            "upazila": "Lalbagh Thana",
+            "id": 231511
+        },
+        {
+            "upazila": "Mirpur Thana",
+            "id": 231494
+        },
+        {
+            "upazila": "Mohammadpur Thana",
+            "id": 231512
+        },
+        {
+            "upazila": "Motijheel Thana",
+            "id": 231484
+        },
+        {
+            "upazila": "Mugda Para Thana",
+            "id": 231498
+        },
+        {
+            "upazila": "Nawabganj",
+            "id": 231499
+        },
+        {
+            "upazila": "New Market Thana",
+            "id": 231527
+        },
+        {
+            "upazila": "Pallabi Thana",
+            "id": 231500
+        },
+        {
+            "upazila": "Paltan Thana",
+            "id": 231522
+        },
+        {
+            "upazila": "Ramna Thana",
+            "id": 231485
+        },
+        {
+            "upazila": "Rampura Thana",
+            "id": 231501
+        },
+        {
+            "upazila": "Rupnagar Thana",
+            "id": 231486
+        },
+        {
+            "upazila": "Sabujbagh Thana",
+            "id": 231515
+        },
+        {
+            "upazila": "Savar",
+            "id": 231516
+        },
+        {
+            "upazila": "Shah Ali Thana",
+            "id": 231487
+        },
+        {
+            "upazila": "Shahbagh Thana",
+            "id": 231503
+        },
+        {
+            "upazila": "Shahjahanpur Thana",
+            "id": 231502
+        },
+        {
+            "upazila": "Sher-E-Bangla Nagar Thana",
+            "id": 231529
+        },
+        {
+            "upazila": "Shyampur Thana",
+            "id": 231528
+        },
+        {
+            "upazila": "Sutrapur Thana",
+            "id": 231504
+        },
+        {
+            "upazila": "Tejgaon Ind. Area Thana",
+            "id": 231495
+        },
+        {
+            "upazila": "Tejgaon Thana",
+            "id": 231523
+        },
+        {
+            "upazila": "Turag Thana",
+            "id": 231517
+        },
+        {
+            "upazila": "Uttar Khan Thana",
+            "id": 231488
+        },
+        {
+            "upazila": "Uttara Paschim Thana",
+            "id": 231524
+        },
+        {
+            "upazila": "Uttara Purba Thana",
+            "id": 231518
+        },
+        {
+            "upazila": "Wari Thana",
+            "id": 231489
+        }
+    ],
+    "Dinajpur": [
+        {
+            "upazila": "Biral",
+            "id": 231309
+        },
+        {
+            "upazila": "Birampur",
+            "id": 231310
+        },
+        {
+            "upazila": "Birganj",
+            "id": 231314
+        },
+        {
+            "upazila": "Bochaganj",
+            "id": 231318
+        },
+        {
+            "upazila": "Chirirbandar",
+            "id": 231319
+        },
+        {
+            "upazila": "Dinajpur Sadar",
+            "id": 231308
+        },
+        {
+            "upazila": "Fulbari",
+            "id": 231311
+        },
+        {
+            "upazila": "Ghoraghat",
+            "id": 231315
+        },
+        {
+            "upazila": "Hakimpur",
+            "id": 231307
+        },
+        {
+            "upazila": "Kaharole",
+            "id": 231316
+        },
+        {
+            "upazila": "Khansama",
+            "id": 231317
+        },
+        {
+            "upazila": "Nawabganj",
+            "id": 231312
+        },
+        {
+            "upazila": "Parbatipur",
+            "id": 231313
+        }
+    ],
+    "Faridpur": [
+        {
+            "upazila": "Alfadanga",
+            "id": 231574
+        },
+        {
+            "upazila": "Bhanga",
+            "id": 231578
+        },
+        {
+            "upazila": "Boalmari",
+            "id": 231575
+        },
+        {
+            "upazila": "Char Bhadrasan",
+            "id": 231573
+        },
+        {
+            "upazila": "Faridpur Sadar",
+            "id": 231576
+        },
+        {
+            "upazila": "Madhukhali",
+            "id": 231577
+        },
+        {
+            "upazila": "Nagarkanda",
+            "id": 231579
+        },
+        {
+            "upazila": "Sadarpur",
+            "id": 231580
+        },
+        {
+            "upazila": "Saltha",
+            "id": 231581
+        }
+    ],
+    "Feni": [
+        {
+            "upazila": "Chhagalnaiya",
+            "id": 231675
+        },
+        {
+            "upazila": "Daganbhuiyan",
+            "id": 231676
+        },
+        {
+            "upazila": "Feni Sadar",
+            "id": 231678
+        },
+        {
+            "upazila": "Fulgazi",
+            "id": 231679
+        },
+        {
+            "upazila": "Parshuram",
+            "id": 231680
+        },
+        {
+            "upazila": "Sonagazi",
+            "id": 231677
+        }
+    ],
+    "Gaibandha": [
+        {
+            "upazila": "Gaibandha Sadar",
+            "id": 231297
+        },
+        {
+            "upazila": "Gobindaganj",
+            "id": 231300
+        },
+        {
+            "upazila": "Palashbari",
+            "id": 231299
+        },
+        {
+            "upazila": "Phulchhari",
+            "id": 231296
+        },
+        {
+            "upazila": "Sadullapur",
+            "id": 231301
+        },
+        {
+            "upazila": "Saghata",
+            "id": 231295
+        },
+        {
+            "upazila": "Sundarganj",
+            "id": 231298
+        }
+    ],
+    "Gazipur": [
+        {
+            "upazila": "Basan Thana",
+            "id": 411722
+        },
+        {
+            "upazila": "Gacha Thana",
+            "id": 411725
+        },
+        {
+            "upazila": "Gazipur Sadar",
+            "id": 231568
+        },
+        {
+            "upazila": "Joydevpur Thana",
+            "id": 411728
+        },
+        {
+            "upazila": "Kaliakair",
+            "id": 231572
+        },
+        {
+            "upazila": "Kaliganj",
+            "id": 231570
+        },
+        {
+            "upazila": "Kapasia",
+            "id": 231569
+        },
+        {
+            "upazila": "Kashimpur Thana",
+            "id": 411723
+        },
+        {
+            "upazila": "Konabari Thana",
+            "id": 411724
+        },
+        {
+            "upazila": "Pubail Thana",
+            "id": 411726
+        },
+        {
+            "upazila": "Sreepur",
+            "id": 231571
+        },
+        {
+            "upazila": "Tongi Paschim Thana",
+            "id": 411709
+        },
+        {
+            "upazila": "Tongi Purba Thana",
+            "id": 411727
+        },
+        {
+            "upazila": "Tongi Thana",
+            "id": 352504
+        }
+    ],
+    "Gopalganj": [
+        {
+            "upazila": "Gopalganj Sadar",
+            "id": 231590
+        },
+        {
+            "upazila": "Kashiani",
+            "id": 231586
+        },
+        {
+            "upazila": "Kotalipara",
+            "id": 231587
+        },
+        {
+            "upazila": "Muksudpur",
+            "id": 231588
+        },
+        {
+            "upazila": "Tungipara",
+            "id": 231589
+        }
+    ],
+    "Habiganj": [
+        {
+            "upazila": "Ajmiriganj",
+            "id": 231425
+        },
+        {
+            "upazila": "Bahubal",
+            "id": 231427
+        },
+        {
+            "upazila": "Baniachong",
+            "id": 231428
+        },
+        {
+            "upazila": "Chunarughat",
+            "id": 231426
+        },
+        {
+            "upazila": "Habiganj Sadar",
+            "id": 231423
+        },
+        {
+            "upazila": "Lakhai",
+            "id": 231430
+        },
+        {
+            "upazila": "Madhabpur",
+            "id": 231429
+        },
+        {
+            "upazila": "Nabiganj",
+            "id": 231424
+        },
+        {
+            "upazila": "Shayestaganj",
+            "id": 398651
+        }
+    ],
+    "Jamalpur": [
+        {
+            "upazila": "Bakshiganj",
+            "id": 231353
+        },
+        {
+            "upazila": "Dewanganj",
+            "id": 231358
+        },
+        {
+            "upazila": "Islampur",
+            "id": 231357
+        },
+        {
+            "upazila": "Jamalpur Sadar",
+            "id": 231354
+        },
+        {
+            "upazila": "Madarganj",
+            "id": 231359
+        },
+        {
+            "upazila": "Melandaha",
+            "id": 231355
+        },
+        {
+            "upazila": "Sarishabari",
+            "id": 231356
+        }
+    ],
+    "Jessore": [
+        {
+            "upazila": "Abhaynagar",
+            "id": 231641
+        },
+        {
+            "upazila": "Bagharpara",
+            "id": 231639
+        },
+        {
+            "upazila": "Benapole Port Thana",
+            "id": 411703
+        },
+        {
+            "upazila": "Chaugachha",
+            "id": 231637
+        },
+        {
+            "upazila": "Jessore Sadar",
+            "id": 231640
+        },
+        {
+            "upazila": "Jhikargachha",
+            "id": 231638
+        },
+        {
+            "upazila": "Keshabpur",
+            "id": 231642
+        },
+        {
+            "upazila": "Manirampur",
+            "id": 231644
+        },
+        {
+            "upazila": "Sharsha",
+            "id": 231643
+        }
+    ],
+    "Jhalokati": [
+        {
+            "upazila": "Jhalokati Sadar",
+            "id": 231475
+        },
+        {
+            "upazila": "Kanthalia",
+            "id": 231472
+        },
+        {
+            "upazila": "Nalchhity",
+            "id": 231473
+        },
+        {
+            "upazila": "Rajapur",
+            "id": 231474
+        }
+    ],
+    "Jhenaidah": [
+        {
+            "upazila": "Harinakunda",
+            "id": 231627
+        },
+        {
+            "upazila": "Jhenaidah Sadar",
+            "id": 231630
+        },
+        {
+            "upazila": "Kaliganj",
+            "id": 231631
+        },
+        {
+            "upazila": "Kotchandpur",
+            "id": 231632
+        },
+        {
+            "upazila": "Maheshpur",
+            "id": 231628
+        },
+        {
+            "upazila": "Shailkupa",
+            "id": 231629
+        }
+    ],
+    "Joypurhat": [
+        {
+            "upazila": "Akkelpur",
+            "id": 231225
+        },
+        {
+            "upazila": "Joypurhat Sadar",
+            "id": 231227
+        },
+        {
+            "upazila": "Kalai",
+            "id": 231228
+        },
+        {
+            "upazila": "Khetlal",
+            "id": 231226
+        },
+        {
+            "upazila": "Panchbibi",
+            "id": 231224
+        }
+    ],
+    "Khagrachhari": [
+        {
+            "upazila": "Dighinala",
+            "id": 231703
+        },
+        {
+            "upazila": "Guimara",
+            "id": 231707
+        },
+        {
+            "upazila": "Khagrachhari Sadar",
+            "id": 231708
+        },
+        {
+            "upazila": "Lakkhichhari",
+            "id": 231709
+        },
+        {
+            "upazila": "Mahalchhari",
+            "id": 231704
+        },
+        {
+            "upazila": "Manikchhari",
+            "id": 231705
+        },
+        {
+            "upazila": "Matiranga",
+            "id": 231706
+        },
+        {
+            "upazila": "Panchhari",
+            "id": 231711
+        },
+        {
+            "upazila": "Ramgarh",
+            "id": 231710
+        }
+    ],
+    "Khulna": [
+        {
+            "upazila": "Aronghata Thana",
+            "id": 231657
+        },
+        {
+            "upazila": "Batiaghata",
+            "id": 231668
+        },
+        {
+            "upazila": "Dacope",
+            "id": 231658
+        },
+        {
+            "upazila": "Daulatpur Thana",
+            "id": 231669
+        },
+        {
+            "upazila": "Dighalia",
+            "id": 231662
+        },
+        {
+            "upazila": "Dumuria",
+            "id": 231659
+        },
+        {
+            "upazila": "Harintana Thana",
+            "id": 231670
+        },
+        {
+            "upazila": "Khalishpur Thana",
+            "id": 231655
+        },
+        {
+            "upazila": "Khan Jahan Ali Thana",
+            "id": 231661
+        },
+        {
+            "upazila": "Khulna Sadar Thana",
+            "id": 231666
+        },
+        {
+            "upazila": "Koyra",
+            "id": 231663
+        },
+        {
+            "upazila": "Labonchara Thana",
+            "id": 231656
+        },
+        {
+            "upazila": "Paikgachha",
+            "id": 231667
+        },
+        {
+            "upazila": "Phultala",
+            "id": 231660
+        },
+        {
+            "upazila": "Rupsa",
+            "id": 231664
+        },
+        {
+            "upazila": "Sonadanga Thana",
+            "id": 231671
+        },
+        {
+            "upazila": "Terokhada",
+            "id": 231665
+        }
+    ],
+    "Kishoreganj": [
+        {
+            "upazila": "Austagram",
+            "id": 231544
+        },
+        {
+            "upazila": "Bajitpur",
+            "id": 231545
+        },
+        {
+            "upazila": "Bhairab",
+            "id": 231538
+        },
+        {
+            "upazila": "Hossainpur",
+            "id": 231536
+        },
+        {
+            "upazila": "Itna",
+            "id": 231548
+        },
+        {
+            "upazila": "Karimganj",
+            "id": 231543
+        },
+        {
+            "upazila": "Katiadi",
+            "id": 231541
+        },
+        {
+            "upazila": "Kishoreganj Sadar",
+            "id": 231546
+        },
+        {
+            "upazila": "Kuliar Char",
+            "id": 231537
+        },
+        {
+            "upazila": "Mithamain",
+            "id": 231539
+        },
+        {
+            "upazila": "Nikli",
+            "id": 231540
+        },
+        {
+            "upazila": "Pakundia",
+            "id": 231547
+        },
+        {
+            "upazila": "Tarail",
+            "id": 231542
+        }
+    ],
+    "Kurigram": [
+        {
+            "upazila": "Bhurungamari",
+            "id": 231341
+        },
+        {
+            "upazila": "Chilmari",
+            "id": 231334
+        },
+        {
+            "upazila": "Kachakata Thana",
+            "id": 411697
+        },
+        {
+            "upazila": "Kurigram Sadar",
+            "id": 231336
+        },
+        {
+            "upazila": "Nageshwari",
+            "id": 231337
+        },
+        {
+            "upazila": "Phulbari",
+            "id": 231335
+        },
+        {
+            "upazila": "Rajarhat",
+            "id": 231340
+        },
+        {
+            "upazila": "Rajibpur",
+            "id": 231339
+        },
+        {
+            "upazila": "Raumari",
+            "id": 231338
+        },
+        {
+            "upazila": "Ulipur",
+            "id": 231333
+        }
+    ],
+    "Kushtia": [
+        {
+            "upazila": "Bheramara",
+            "id": 231653
+        },
+        {
+            "upazila": "Daulatpur",
+            "id": 231649
+        },
+        {
+            "upazila": "EB Thana",
+            "id": 411704
+        },
+        {
+            "upazila": "Khoksa",
+            "id": 231650
+        },
+        {
+            "upazila": "Kumarkhali",
+            "id": 231652
+        },
+        {
+            "upazila": "Kushtia Sadar",
+            "id": 231654
+        },
+        {
+            "upazila": "Mirpur",
+            "id": 231651
+        }
+    ],
+    "Lakshmipur": [
+        {
+            "upazila": "Kamalnagar",
+            "id": 231684
+        },
+        {
+            "upazila": "Lakshmipur Sadar",
+            "id": 231685
+        },
+        {
+            "upazila": "Raipur",
+            "id": 231682
+        },
+        {
+            "upazila": "Ramganj",
+            "id": 231681
+        },
+        {
+            "upazila": "Ramgati",
+            "id": 231683
+        }
+    ],
+    "Lalmonirhat": [
+        {
+            "upazila": "Aditmari",
+            "id": 231345
+        },
+        {
+            "upazila": "Hatibandha",
+            "id": 231342
+        },
+        {
+            "upazila": "Kaliganj",
+            "id": 231343
+        },
+        {
+            "upazila": "Lalmonirhat Sadar",
+            "id": 231344
+        },
+        {
+            "upazila": "Patgram",
+            "id": 231346
+        }
+    ],
+    "Madaripur": [
+        {
+            "upazila": "Dasar",
+            "id": 415474
+        },
+        {
+            "upazila": "Dasar Thana",
+            "id": 411652
+        },
+        {
+            "upazila": "Kalkini",
+            "id": 231583
+        },
+        {
+            "upazila": "Madaripur Sadar",
+            "id": 231582
+        },
+        {
+            "upazila": "Rajoir",
+            "id": 231584
+        },
+        {
+            "upazila": "Shibchar",
+            "id": 231585
+        }
+    ],
+    "Magura": [
+        {
+            "upazila": "Magura Sadar",
+            "id": 231645
+        },
+        {
+            "upazila": "Mohammadpur",
+            "id": 231647
+        },
+        {
+            "upazila": "Shalikha",
+            "id": 231646
+        },
+        {
+            "upazila": "Sreepur",
+            "id": 231648
+        }
+    ],
+    "Manikganj": [
+        {
+            "upazila": "Daulatpur",
+            "id": 231563
+        },
+        {
+            "upazila": "Ghior",
+            "id": 231567
+        },
+        {
+            "upazila": "Harirampur",
+            "id": 231564
+        },
+        {
+            "upazila": "Manikganj Sadar",
+            "id": 231566
+        },
+        {
+            "upazila": "Saturia",
+            "id": 231565
+        },
+        {
+            "upazila": "Shibalay",
+            "id": 231561
+        },
+        {
+            "upazila": "Singair",
+            "id": 231562
+        }
+    ],
+    "Meherpur": [
+        {
+            "upazila": "Gangni",
+            "id": 231624
+        },
+        {
+            "upazila": "Meherpur Sadar",
+            "id": 231626
+        },
+        {
+            "upazila": "Mujib Nagar",
+            "id": 231625
+        }
+    ],
+    "Moulvibazar": [
+        {
+            "upazila": "Barlekha",
+            "id": 231393
+        },
+        {
+            "upazila": "Juri",
+            "id": 231389
+        },
+        {
+            "upazila": "Kamalganj",
+            "id": 231392
+        },
+        {
+            "upazila": "Kulaura",
+            "id": 231388
+        },
+        {
+            "upazila": "Maulvibazar Sadar",
+            "id": 231390
+        },
+        {
+            "upazila": "Rajnagar",
+            "id": 231391
+        },
+        {
+            "upazila": "Sreemangal",
+            "id": 231394
+        }
+    ],
+    "Munshiganj": [
+        {
+            "upazila": "Gazaria",
+            "id": 231532
+        },
+        {
+            "upazila": "Louhajang",
+            "id": 231534
+        },
+        {
+            "upazila": "Munshiganj Sadar",
+            "id": 231535
+        },
+        {
+            "upazila": "Padmasetu Uttar Thana",
+            "id": 411653
+        },
+        {
+            "upazila": "Sirajdikhan",
+            "id": 231533
+        },
+        {
+            "upazila": "Sreenagar",
+            "id": 231530
+        },
+        {
+            "upazila": "Tongibari",
+            "id": 231531
+        }
+    ],
+    "Mymensingh": [
+        {
+            "upazila": "Bhaluka",
+            "id": 231370
+        },
+        {
+            "upazila": "Dhobaura",
+            "id": 231362
+        },
+        {
+            "upazila": "Fulbaria",
+            "id": 231365
+        },
+        {
+            "upazila": "Gafargaon",
+            "id": 231366
+        },
+        {
+            "upazila": "Gouripur",
+            "id": 231368
+        },
+        {
+            "upazila": "Haluaghat",
+            "id": 231367
+        },
+        {
+            "upazila": "Ishwarganj",
+            "id": 231363
+        },
+        {
+            "upazila": "Muktagachha",
+            "id": 231360
+        },
+        {
+            "upazila": "Mymensingh Sadar",
+            "id": 231371
+        },
+        {
+            "upazila": "Nandail",
+            "id": 231372
+        },
+        {
+            "upazila": "Pagla Thana",
+            "id": 411710
+        },
+        {
+            "upazila": "Phulpur",
+            "id": 231369
+        },
+        {
+            "upazila": "Tarakanda",
+            "id": 231364
+        },
+        {
+            "upazila": "Trishal",
+            "id": 231361
+        }
+    ],
+    "Naogaon": [
+        {
+            "upazila": "Atrai",
+            "id": 231246
+        },
+        {
+            "upazila": "Badalgachhi",
+            "id": 231241
+        },
+        {
+            "upazila": "Dhamoirhat",
+            "id": 231238
+        },
+        {
+            "upazila": "Mahadebpur",
+            "id": 231247
+        },
+        {
+            "upazila": "Manda",
+            "id": 231242
+        },
+        {
+            "upazila": "Naogaon Sadar",
+            "id": 231243
+        },
+        {
+            "upazila": "Niamatpur",
+            "id": 231244
+        },
+        {
+            "upazila": "Patnitala",
+            "id": 231245
+        },
+        {
+            "upazila": "Porsha",
+            "id": 231248
+        },
+        {
+            "upazila": "Raninagar",
+            "id": 231239
+        },
+        {
+            "upazila": "Sapahar",
+            "id": 231240
+        }
+    ],
+    "Narail": [
+        {
+            "upazila": "Kalia",
+            "id": 231672
+        },
+        {
+            "upazila": "Lohagara",
+            "id": 231673
+        },
+        {
+            "upazila": "Naragati Thana",
+            "id": 411693
+        },
+        {
+            "upazila": "Narail Sadar",
+            "id": 231674
+        }
+    ],
+    "Narayanganj": [
+        {
+            "upazila": "Araihazar",
+            "id": 379828
+        },
+        {
+            "upazila": "Bandar",
+            "id": 379830
+        },
+        {
+            "upazila": "Fatullah Model Thana",
+            "id": 411677
+        },
+        {
+            "upazila": "Narayanganj",
+            "id": 380052
+        },
+        {
+            "upazila": "Narayanganj Sadar",
+            "id": 379814
+        },
+        {
+            "upazila": "Rupganj",
+            "id": 379815
+        },
+        {
+            "upazila": "Siddirganj Thana",
+            "id": 411654
+        },
+        {
+            "upazila": "Sonargaon",
+            "id": 379829
+        }
+    ],
+    "Narsingdi": [
+        {
+            "upazila": "Belabo",
+            "id": 231549
+        },
+        {
+            "upazila": "Madhavdi Thana",
+            "id": 411689
+        },
+        {
+            "upazila": "Manohardi",
+            "id": 231551
+        },
+        {
+            "upazila": "Narsingdi Sadar",
+            "id": 231550
+        },
+        {
+            "upazila": "Palash",
+            "id": 231553
+        },
+        {
+            "upazila": "Raipura",
+            "id": 231552
+        },
+        {
+            "upazila": "Shibpur",
+            "id": 231554
+        }
+    ],
+    "Natore": [
+        {
+            "upazila": "Bagatipara",
+            "id": 231292
+        },
+        {
+            "upazila": "Baraigram",
+            "id": 231290
+        },
+        {
+            "upazila": "Gurudaspur",
+            "id": 231294
+        },
+        {
+            "upazila": "Lalpur",
+            "id": 231293
+        },
+        {
+            "upazila": "Naldanga",
+            "id": 231288
+        },
+        {
+            "upazila": "Natore Sadar",
+            "id": 231289
+        },
+        {
+            "upazila": "Singra",
+            "id": 231291
+        }
+    ],
+    "Netrakona": [
+        {
+            "upazila": "Atpara",
+            "id": 231374
+        },
+        {
+            "upazila": "Barhatta",
+            "id": 231377
+        },
+        {
+            "upazila": "Durgapur",
+            "id": 231381
+        },
+        {
+            "upazila": "Kalmakanda",
+            "id": 231376
+        },
+        {
+            "upazila": "Kendua",
+            "id": 231375
+        },
+        {
+            "upazila": "Khaliajuri",
+            "id": 231382
+        },
+        {
+            "upazila": "Madan",
+            "id": 231378
+        },
+        {
+            "upazila": "Mohanganj",
+            "id": 231373
+        },
+        {
+            "upazila": "Netrakona Sadar",
+            "id": 231380
+        },
+        {
+            "upazila": "Purbadhala",
+            "id": 231379
+        }
+    ],
+    "Nilphamari": [
+        {
+            "upazila": "Dimla",
+            "id": 231352
+        },
+        {
+            "upazila": "Domar",
+            "id": 231351
+        },
+        {
+            "upazila": "Jaldhaka",
+            "id": 231348
+        },
+        {
+            "upazila": "Kishoreganj",
+            "id": 231349
+        },
+        {
+            "upazila": "Nilphamari Sadar",
+            "id": 231350
+        },
+        {
+            "upazila": "Saidpur",
+            "id": 231347
+        }
+    ],
+    "Noakhali": [
+        {
+            "upazila": "Begumganj",
+            "id": 231735
+        },
+        {
+            "upazila": "Bhasanchar Thana",
+            "id": 411659
+        },
+        {
+            "upazila": "Chatkhil",
+            "id": 231736
+        },
+        {
+            "upazila": "Companiganj",
+            "id": 231732
+        },
+        {
+            "upazila": "Hatiya",
+            "id": 231733
+        },
+        {
+            "upazila": "Kabirhat",
+            "id": 231730
+        },
+        {
+            "upazila": "Noakhali Sadar",
+            "id": 231734
+        },
+        {
+            "upazila": "Senbag",
+            "id": 231729
+        },
+        {
+            "upazila": "Sonaimuri",
+            "id": 231731
+        },
+        {
+            "upazila": "Subarnachar",
+            "id": 231737
+        }
+    ],
+    "Pabna": [
+        {
+            "upazila": "Aminpur Thana",
+            "id": 411634
+        },
+        {
+            "upazila": "Ataikula Thana",
+            "id": 411635
+        },
+        {
+            "upazila": "Atgharia",
+            "id": 231253
+        },
+        {
+            "upazila": "Bera",
+            "id": 231249
+        },
+        {
+            "upazila": "Bhangura",
+            "id": 231250
+        },
+        {
+            "upazila": "Chatmohar",
+            "id": 231257
+        },
+        {
+            "upazila": "Faridpur",
+            "id": 231254
+        },
+        {
+            "upazila": "Ishwardi",
+            "id": 231255
+        },
+        {
+            "upazila": "Pabna Sadar",
+            "id": 231251
+        },
+        {
+            "upazila": "Santhia",
+            "id": 231256
+        },
+        {
+            "upazila": "Sujanagar",
+            "id": 231252
+        }
+    ],
+    "Panchagarh": [
+        {
+            "upazila": "Atwari",
+            "id": 231302
+        },
+        {
+            "upazila": "Boda",
+            "id": 231305
+        },
+        {
+            "upazila": "Debiganj",
+            "id": 231306
+        },
+        {
+            "upazila": "Panchagarh Sadar",
+            "id": 231303
+        },
+        {
+            "upazila": "Tentulia",
+            "id": 231304
+        }
+    ],
+    "Patuakhali": [
+        {
+            "upazila": "Bauphal",
+            "id": 231443
+        },
+        {
+            "upazila": "Dashmina",
+            "id": 231444
+        },
+        {
+            "upazila": "Dumki",
+            "id": 231441
+        },
+        {
+            "upazila": "Galachipa",
+            "id": 231437
+        },
+        {
+            "upazila": "Kalapara",
+            "id": 231439
+        },
+        {
+            "upazila": "Mahipur Thana",
+            "id": 411675
+        },
+        {
+            "upazila": "Mirzaganj",
+            "id": 231438
+        },
+        {
+            "upazila": "Patuakhali Sadar",
+            "id": 231442
+        },
+        {
+            "upazila": "Rangabali",
+            "id": 231440
+        }
+    ],
+    "Pirojpur": [
+        {
+            "upazila": "Bhandaria",
+            "id": 231458
+        },
+        {
+            "upazila": "Indurkani",
+            "id": 231454
+        },
+        {
+            "upazila": "Kawkhali",
+            "id": 231455
+        },
+        {
+            "upazila": "Mathbaria",
+            "id": 231452
+        },
+        {
+            "upazila": "Nazirpur",
+            "id": 231453
+        },
+        {
+            "upazila": "Nesarabad",
+            "id": 231456
+        },
+        {
+            "upazila": "Pirojpur Sadar",
+            "id": 231457
+        }
+    ],
+    "Rajbari": [
+        {
+            "upazila": "Baliakandi",
+            "id": 231594
+        },
+        {
+            "upazila": "Goalanda",
+            "id": 231595
+        },
+        {
+            "upazila": "Kalukhali",
+            "id": 231592
+        },
+        {
+            "upazila": "Pangsha",
+            "id": 231593
+        },
+        {
+            "upazila": "Rajbari Sadar",
+            "id": 231591
+        }
+    ],
+    "Rajshahi": [
+        {
+            "upazila": "Airport Thana",
+            "id": 411682
+        },
+        {
+            "upazila": "Bagha",
+            "id": 231277
+        },
+        {
+            "upazila": "Bagmara",
+            "id": 231283
+        },
+        {
+            "upazila": "Belpukur Thana",
+            "id": 411640
+        },
+        {
+            "upazila": "Boalia Thana",
+            "id": 231280
+        },
+        {
+            "upazila": "Chandrima Thana",
+            "id": 411636
+        },
+        {
+            "upazila": "Charghat",
+            "id": 231282
+        },
+        {
+            "upazila": "Damkura Thana",
+            "id": 411637
+        },
+        {
+            "upazila": "Durgapur",
+            "id": 231278
+        },
+        {
+            "upazila": "Godagari",
+            "id": 231275
+        },
+        {
+            "upazila": "Karnahat Thana",
+            "id": 411638
+        },
+        {
+            "upazila": "Kashiadanga Thana",
+            "id": 411639
+        },
+        {
+            "upazila": "Katakhali Thana",
+            "id": 411641
+        },
+        {
+            "upazila": "Matihar Thana",
+            "id": 231286
+        },
+        {
+            "upazila": "Mohanpur",
+            "id": 231276
+        },
+        {
+            "upazila": "Paba",
+            "id": 231279
+        },
+        {
+            "upazila": "Puthia",
+            "id": 231281
+        },
+        {
+            "upazila": "Rajpara Thana",
+            "id": 231284
+        },
+        {
+            "upazila": "Shah Makhdum Thana",
+            "id": 231285
+        },
+        {
+            "upazila": "Tanore",
+            "id": 231287
+        }
+    ],
+    "Rangamati": [
+        {
+            "upazila": "Baghaichhari",
+            "id": 231696
+        },
+        {
+            "upazila": "Barkal",
+            "id": 231694
+        },
+        {
+            "upazila": "Belaichhari",
+            "id": 231693
+        },
+        {
+            "upazila": "Chandraghona Thana",
+            "id": 411660
+        },
+        {
+            "upazila": "Farua Thana",
+            "id": 411691
+        },
+        {
+            "upazila": "Jurachhari",
+            "id": 231699
+        },
+        {
+            "upazila": "Kaptai",
+            "id": 231697
+        },
+        {
+            "upazila": "Kawkhali",
+            "id": 231698
+        },
+        {
+            "upazila": "Langadu",
+            "id": 231702
+        },
+        {
+            "upazila": "Naniarchar",
+            "id": 231700
+        },
+        {
+            "upazila": "Rajasthali",
+            "id": 231701
+        },
+        {
+            "upazila": "Rangamati Sadar",
+            "id": 231695
+        },
+        {
+            "upazila": "Sajek Thana",
+            "id": 411692
+        }
+    ],
+    "Rangpur": [
+        {
+            "upazila": "Badarganj",
+            "id": 231326
+        },
+        {
+            "upazila": "Gangachara",
+            "id": 231325
+        },
+        {
+            "upazila": "Haragacha Thana",
+            "id": 411694
+        },
+        {
+            "upazila": "Hazirhat Thana",
+            "id": 411706
+        },
+        {
+            "upazila": "Kaunia",
+            "id": 231331
+        },
+        {
+            "upazila": "Mahiganj Thana",
+            "id": 411707
+        },
+        {
+            "upazila": "Mitha Pukur",
+            "id": 231329
+        },
+        {
+            "upazila": "Parshuram Thana",
+            "id": 411695
+        },
+        {
+            "upazila": "Pirgachha",
+            "id": 231332
+        },
+        {
+            "upazila": "Pirganj",
+            "id": 231328
+        },
+        {
+            "upazila": "Rangpur Sadar",
+            "id": 231327
+        },
+        {
+            "upazila": "Tajhat Thana",
+            "id": 411708
+        },
+        {
+            "upazila": "Taraganj",
+            "id": 231330
+        }
+    ],
+    "Satkhira": [
+        {
+            "upazila": "Ashashuni",
+            "id": 231623
+        },
+        {
+            "upazila": "Debhata",
+            "id": 231619
+        },
+        {
+            "upazila": "Kalaroa",
+            "id": 231620
+        },
+        {
+            "upazila": "Kaliganj",
+            "id": 231618
+        },
+        {
+            "upazila": "Patkelghat Thana",
+            "id": 411705
+        },
+        {
+            "upazila": "Satkhira Sadar",
+            "id": 231621
+        },
+        {
+            "upazila": "Shyamnagar",
+            "id": 231622
+        },
+        {
+            "upazila": "Tala",
+            "id": 231617
+        }
+    ],
+    "Shariatpur": [
+        {
+            "upazila": "Bhedarganj",
+            "id": 231555
+        },
+        {
+            "upazila": "Damudya",
+            "id": 231556
+        },
+        {
+            "upazila": "Gosairhat",
+            "id": 231557
+        },
+        {
+            "upazila": "Naria",
+            "id": 231559
+        },
+        {
+            "upazila": "Padmasetu Dakshin Thana",
+            "id": 411655
+        },
+        {
+            "upazila": "Palong Thana",
+            "id": 411678
+        },
+        {
+            "upazila": "Sakhipur Thana",
+            "id": 411656
+        },
+        {
+            "upazila": "Shariatpur Sadar",
+            "id": 231560
+        },
+        {
+            "upazila": "Zajira",
+            "id": 231558
+        }
+    ],
+    "Sherpur": [
+        {
+            "upazila": "Jhenaigati",
+            "id": 231386
+        },
+        {
+            "upazila": "Nakla",
+            "id": 231385
+        },
+        {
+            "upazila": "Nalitabari",
+            "id": 231387
+        },
+        {
+            "upazila": "Sherpur Sadar",
+            "id": 231384
+        },
+        {
+            "upazila": "Sreebardi",
+            "id": 231383
+        }
+    ],
+    "Sirajganj": [
+        {
+            "upazila": "Bangabandhu Setu Paschim Thana",
+            "id": 411683
+        },
+        {
+            "upazila": "Belkuchi",
+            "id": 231236
+        },
+        {
+            "upazila": "Chauhali",
+            "id": 231235
+        },
+        {
+            "upazila": "Chowhali Thana",
+            "id": 411673
+        },
+        {
+            "upazila": "Enayetpur Thana",
+            "id": 411684
+        },
+        {
+            "upazila": "Kamarkhanda",
+            "id": 231237
+        },
+        {
+            "upazila": "Kazipur",
+            "id": 231233
+        },
+        {
+            "upazila": "Rayganj",
+            "id": 231230
+        },
+        {
+            "upazila": "Salonga Thana",
+            "id": 411685
+        },
+        {
+            "upazila": "Shahjadpur",
+            "id": 231231
+        },
+        {
+            "upazila": "Sirajganj Sadar",
+            "id": 231234
+        },
+        {
+            "upazila": "Tarash",
+            "id": 231232
+        },
+        {
+            "upazila": "Ullah Para",
+            "id": 231229
+        }
+    ],
+    "Sunamganj": [
+        {
+            "upazila": "Bishwambarpur",
+            "id": 231395
+        },
+        {
+            "upazila": "Chhatak",
+            "id": 231400
+        },
+        {
+            "upazila": "Dakshin Sunamganj",
+            "id": 231402
+        },
+        {
+            "upazila": "Derai",
+            "id": 231396
+        },
+        {
+            "upazila": "Dharampasha",
+            "id": 231401
+        },
+        {
+            "upazila": "Dowarabazar",
+            "id": 231403
+        },
+        {
+            "upazila": "Jagannathpur",
+            "id": 231397
+        },
+        {
+            "upazila": "Jamalganj",
+            "id": 231398
+        },
+        {
+            "upazila": "Madheanagar",
+            "id": 415502
+        },
+        {
+            "upazila": "Madhyanagar Thana",
+            "id": 411698
+        },
+        {
+            "upazila": "Shalla",
+            "id": 231404
+        },
+        {
+            "upazila": "Sunamganj Sadar",
+            "id": 231405
+        },
+        {
+            "upazila": "Tahirpur",
+            "id": 231399
+        }
+    ],
+    "Sylhet": [
+        {
+            "upazila": "Airport Thana",
+            "id": 231413
+        },
+        {
+            "upazila": "Balaganj",
+            "id": 231418
+        },
+        {
+            "upazila": "Beani Bazar",
+            "id": 231419
+        },
+        {
+            "upazila": "Bishwanath",
+            "id": 231420
+        },
+        {
+            "upazila": "Companiganj",
+            "id": 231409
+        },
+        {
+            "upazila": "Dakshin Surma",
+            "id": 231411
+        },
+        {
+            "upazila": "Fenchuganj",
+            "id": 231406
+        },
+        {
+            "upazila": "Golapganj",
+            "id": 231407
+        },
+        {
+            "upazila": "Gowainghat",
+            "id": 231421
+        },
+        {
+            "upazila": "Jaintapur",
+            "id": 231414
+        },
+        {
+            "upazila": "Jalalabad thana",
+            "id": 231410
+        },
+        {
+            "upazila": "Kanaighat",
+            "id": 231415
+        },
+        {
+            "upazila": "Moglabazar Thana",
+            "id": 231416
+        },
+        {
+            "upazila": "Osmaninagar",
+            "id": 231408
+        },
+        {
+            "upazila": "Sahporan Thana",
+            "id": 231422
+        },
+        {
+            "upazila": "Sylhet Sadar",
+            "id": 231412
+        },
+        {
+            "upazila": "Zakiganj",
+            "id": 231417
+        }
+    ],
+    "Tangail": [
+        {
+            "upazila": "Bangabandhu Purbasetu Thana",
+            "id": 411679
+        },
+        {
+            "upazila": "Basail",
+            "id": 231599
+        },
+        {
+            "upazila": "Bhuanpur",
+            "id": 231600
+        },
+        {
+            "upazila": "Delduar",
+            "id": 231601
+        },
+        {
+            "upazila": "Dhanbari",
+            "id": 231604
+        },
+        {
+            "upazila": "Ghatail",
+            "id": 231596
+        },
+        {
+            "upazila": "Gopalpur",
+            "id": 231597
+        },
+        {
+            "upazila": "Kalihati",
+            "id": 231602
+        },
+        {
+            "upazila": "Madhupur",
+            "id": 231598
+        },
+        {
+            "upazila": "Mirzapur",
+            "id": 231605
+        },
+        {
+            "upazila": "Nagarpur",
+            "id": 231606
+        },
+        {
+            "upazila": "Sakhipur",
+            "id": 231603
+        },
+        {
+            "upazila": "Tangail Sadar",
+            "id": 231607
+        }
+    ],
+    "Thakurgaon": [
+        {
+            "upazila": "Baliadangi",
+            "id": 231323
+        },
+        {
+            "upazila": "Bhulli Thana",
+            "id": 411696
+        },
+        {
+            "upazila": "Haripur",
+            "id": 231324
+        },
+        {
+            "upazila": "Pirganj",
+            "id": 231322
+        },
+        {
+            "upazila": "Ranishankail",
+            "id": 231320
+        },
+        {
+            "upazila": "Ruhia Thana",
+            "id": 411661
+        },
+        {
+            "upazila": "Thakurgaon Sadar",
+            "id": 231321
+        }
+    ]
+}

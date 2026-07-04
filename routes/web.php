@@ -7,6 +7,8 @@ Route::inertia('/', 'welcome', [
     'canRegister' => Features::enabled(Features::registration()),
 ])->name('home');
 
+Route::get('/api/distance', [\App\Http\Controllers\DistanceController::class, 'getDistance']);
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::post('/admin/applications/allocate', [\App\Http\Controllers\AdminController::class, 'allocateSeat'])->name('admin.allocate');

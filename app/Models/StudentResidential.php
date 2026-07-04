@@ -4,17 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeatApplication extends Model
+class StudentResidential extends Model
 {
     protected $guarded = [];
 
-    public function student()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'student_id');
+        return $this->belongsTo(User::class);
     }
 
     public function hall()
     {
         return $this->belongsTo(Hall::class);
+    }
+
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class);
     }
 }

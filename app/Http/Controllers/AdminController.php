@@ -67,10 +67,12 @@ class AdminController extends Controller
         $seat->status = 'booked';
         $seat->save();
 
-        $profile = \App\Models\StudentProfile::find($app->student_id);
-        $profile->is_residential = true;
-        $profile->seat_id = $seat->id;
-        $profile->save();
+        $user = \App\Models\User::findOrFail($app->student_id);
+        $residential = $user->residential ?: new \App\Models\StudentResidential(['user_id' => $user->id]);
+        $residential->status = 'Residential';
+        $residential->seat_id = $seat->id;
+        $residential->hall_id = $seat->room->floor->hall_id;
+        $residential->save();
 
         return back()->with('success', 'Seat allocated successfully.');
     }

@@ -13,8 +13,8 @@ class Seat extends Model
         return $this->belongsTo(Room::class);
     }
 
-    public function studentProfile()
+    public function studentResidential()
     {
-        return $this->hasOne(StudentProfile::class);
+        return $this->hasOne(StudentResidential::class);
     }
 }

@@ -20,9 +20,24 @@ class User extends Authenticatable
         return $this->belongsTo(Hall::class);
     }
 
-    public function studentProfile()
+    public function academic()
     {
-        return $this->hasOne(StudentProfile::class);
+        return $this->hasOne(StudentAcademic::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(StudentAddress::class);
+    }
+
+    public function residential()
+    {
+        return $this->hasOne(StudentResidential::class);
+    }
+
+    public function guardian()
+    {
+        return $this->hasOne(StudentGuardian::class);
     }
 
     public function teacherProfile()

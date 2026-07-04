@@ -185,16 +185,41 @@ class DatabaseSeeder extends Seeder
 
                 $randomDistrict = $districtDistances[array_rand($districtDistances)]['district'];
 
-                \App\Models\StudentProfile::create([
+                \App\Models\StudentAcademic::create([
                     'user_id' => $studentUser->id,
                     'student_id' => '19020' . $hall->id . sprintf('%02d', $st),
+                    'department' => 'Computer Science and Engineering',
+                    'degree' => 'B.Sc. (Eng.)',
+                    'level' => rand(1, 4),
+                    'semester' => rand(1, 2) === 1 ? 'I' : 'II',
+                    'current_cgpa' => rand(250, 400) / 100,
+                ]);
+
+                \App\Models\StudentAddress::create([
+                    'user_id' => $studentUser->id,
+                    'perm_district' => $randomDistrict,
+                    'perm_upazilla' => $randomDistrict . ' Upazilla',
+                    'perm_village_area' => $randomDistrict . ' Area',
+                    'pres_district' => $randomDistrict,
+                    'pres_upazilla' => $randomDistrict . ' Upazilla',
+                    'pres_village_area' => $randomDistrict . ' Area',
+                ]);
+
+                \App\Models\StudentResidential::create([
+                    'user_id' => $studentUser->id,
+                    'status' => 'Non-Residential',
+                    'hall_id' => $hall->id,
+                    'seat_id' => null,
+                    'staying_from' => null,
+                ]);
+
+                \App\Models\StudentGuardian::create([
+                    'user_id' => $studentUser->id,
                     'father_name' => 'Father of Student ' . $st,
                     'mother_name' => 'Mother of Student ' . $st,
-                    'perm_district' => $randomDistrict,
-                    'pres_district' => $randomDistrict,
-                    'guardian_income' => rand(100000, 500000),
-                    'cgpa' => rand(250, 400) / 100,
-                    'is_residential' => false,
+                    'guardian_name' => 'Father of Student ' . $st,
+                    'guardian_occupation' => 'Serviceholder',
+                    'annual_income_amount' => rand(100000, 500000),
                 ]);
             }
         }

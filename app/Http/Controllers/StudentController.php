@@ -11,9 +11,9 @@ class StudentController extends Controller
         $user = $request->user();
         if ($user->role !== 'student') abort(403);
 
-        $profile = \App\Models\StudentProfile::where('user_id', $user->id)->first();
-        if (!$profile) {
-            return back()->with('error', 'Profile not found.');
+        $user->load(['academic', 'address', 'guardian']);
+        if (!$user->academic || !$user->address || !$user->guardian) {
+            return back()->with('error', 'Profile information is incomplete.');
         }
 
         // Check if application period is active
@@ -32,7 +32,7 @@ class StudentController extends Controller
 
         // Check if already applied (pending or denied) in the current period
         if ($hall->application_start) {
-            $existing = \App\Models\SeatApplication::where('student_id', $profile->id)
+            $existing = \App\Models\SeatApplication::where('student_id', $user->id)
                 ->where('created_at', '>=', $hall->application_start)
                 ->whereIn('status', ['pending', 'denied'])
                 ->first();
@@ -46,11 +46,11 @@ class StudentController extends Controller
         }
 
         \App\Models\SeatApplication::create([
-            'student_id' => $profile->id,
+            'student_id' => $user->id,
             'hall_id' => $user->hall_id,
-            'cgpa' => $profile->cgpa,
-            'guardian_income' => $profile->guardian_income,
-            'distance_from_home' => $profile->distance_from_home,
+            'cgpa' => $user->academic->current_cgpa,
+            'guardian_income' => $user->guardian->annual_income_amount,
+            'distance_from_home' => $user->address->distance_from_home,
             'status' => 'pending'
         ]);
 

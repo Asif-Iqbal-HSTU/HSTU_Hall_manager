@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seat_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('student_profiles')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('hall_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['pending', 'approved', 'denied'])->default('pending');
             $table->decimal('cgpa', 3, 2)->nullable();

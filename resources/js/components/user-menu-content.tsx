@@ -35,6 +35,7 @@ export function UserMenuContent({ user }: Props) {
             <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
                     <Link
+                        id="settings-menu-link"
                         className="block w-full cursor-pointer"
                         href={edit()}
                         prefetch

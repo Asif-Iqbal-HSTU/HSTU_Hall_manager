@@ -11,31 +11,49 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_profiles', function (Blueprint $table) {
+        Schema::create('student_academics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
             $table->string('student_id')->unique();
+            $table->string('department');
+            $table->string('degree');
+            $table->integer('level'); // level 1-4
+            $table->string('semester'); // semester I-II
+            $table->decimal('current_cgpa', 3, 2);
+            $table->timestamps();
+        });
+
+        Schema::create('student_addresses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            $table->string('perm_district');
+            $table->string('perm_upazilla');
+            $table->string('perm_village_area');
+            $table->string('pres_district');
+            $table->string('pres_upazilla');
+            $table->string('pres_village_area');
+            $table->integer('distance_from_home')->nullable(); // in km, calculated from perm_district
+            $table->timestamps();
+        });
+
+        Schema::create('student_residentials', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            $table->enum('status', ['Residential', 'Non-Residential'])->default('Non-Residential');
+            $table->foreignId('hall_id')->nullable()->constrained('halls')->onDelete('set null');
+            $table->foreignId('seat_id')->nullable()->constrained('seats')->onDelete('set null');
+            $table->date('staying_from')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('student_guardians', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
-            $table->string('perm_division')->nullable();
-            $table->string('perm_district')->nullable();
-            $table->string('perm_upazilla')->nullable();
-            $table->string('perm_post_code')->nullable();
-            $table->string('perm_village')->nullable();
-            $table->string('pres_division')->nullable();
-            $table->string('pres_district')->nullable();
-            $table->string('pres_upazilla')->nullable();
-            $table->string('pres_post_code')->nullable();
-            $table->string('pres_village')->nullable();
-            $table->decimal('guardian_income', 10, 2)->nullable();
-            $table->integer('distance_from_home')->nullable(); // In km
-            $table->string('level')->nullable();
-            $table->string('semester')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('admission_year')->nullable();
-            $table->decimal('cgpa', 3, 2)->nullable();
-            $table->boolean('is_residential')->default(false);
-            $table->foreignId('seat_id')->nullable()->constrained('seats')->onDelete('set null');
+            $table->string('guardian_name')->nullable();
+            $table->string('guardian_occupation');
+            $table->decimal('annual_income_amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -45,6 +63,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_profiles');
+        Schema::dropIfExists('student_guardians');
+        Schema::dropIfExists('student_residentials');
+        Schema::dropIfExists('student_addresses');
+        Schema::dropIfExists('student_academics');
     }
 };

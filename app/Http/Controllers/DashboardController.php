@@ -17,16 +17,16 @@ class DashboardController extends Controller
             }
 
             $hall = \App\Models\Hall::find($user->hall_id);
-            $students = \App\Models\User::where('hall_id', $hall->id)->where('role', 'student')->with('studentProfile')->get();
+            $students = \App\Models\User::where('hall_id', $hall->id)->where('role', 'student')->with(['academic', 'address', 'residential.seat.room', 'guardian'])->get();
             $residentialStudents = $students->filter(function($student) {
-                return $student->studentProfile && $student->studentProfile->is_residential;
+                return $student->residential && $student->residential->status === 'Residential';
             });
 
             // Load floors and rooms with seats for this hall
             $rooms = \App\Models\Room::whereHas('floor', function($q) use ($hall) {
                 $q->where('hall_id', $hall->id);
             })->where('purpose', 'residential')->with(['seats' => function($q) {
-                $q->with(['studentProfile.user']);
+                $q->with(['studentResidential.user']);
             }])->get();
 
             // Load pending applications for the current period
@@ -35,7 +35,7 @@ class DashboardController extends Controller
             if ($hall->application_start) {
                 $applicationsQuery->where('created_at', '>=', $hall->application_start);
             }
-            $applications = $applicationsQuery->with(['student.user'])->get();
+            $applications = $applicationsQuery->with(['student.academic'])->get();
 
             return inertia('admin/dashboard', [
                 'hall' => $hall,
@@ -47,20 +47,23 @@ class DashboardController extends Controller
         }
 
         if ($user->role === 'student') {
-            $profile = \App\Models\StudentProfile::where('user_id', $user->id)->with('seat.room')->first();
+            $user->load(['academic', 'address', 'residential.seat.room', 'residential.hall', 'guardian']);
             $hall = $user->hall_id ? \App\Models\Hall::find($user->hall_id) : null;
 
             // Only load applications created during/after the current period start date
             $application = null;
-            if ($profile && $hall && $hall->application_start) {
-                $application = \App\Models\SeatApplication::where('student_id', $profile->id)
+            if ($user->academic && $hall && $hall->application_start) {
+                $application = \App\Models\SeatApplication::where('student_id', $user->id)
                                                            ->where('created_at', '>=', $hall->application_start)
                                                            ->latest()
                                                            ->first();
             }
 
             return inertia('student/dashboard', [
-                'profile' => $profile,
+                'academic' => $user->academic,
+                'address' => $user->address,
+                'residential' => $user->residential,
+                'guardian' => $user->guardian,
                 'application' => $application,
                 'hall' => $hall
             ]);
