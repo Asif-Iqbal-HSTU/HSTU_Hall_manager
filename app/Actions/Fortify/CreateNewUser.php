@@ -46,8 +46,8 @@ class CreateNewUser implements CreatesNewUsers
             'staying_from' => ['nullable', 'date'],
 
             // Guardian
-            'father_name' => ['nullable', 'string', 'max:255'],
-            'mother_name' => ['nullable', 'string', 'max:255'],
+            'father_name' => ['required', 'string', 'max:255'],
+            'mother_name' => ['required', 'string', 'max:255'],
             'guardian_name' => ['nullable', 'string', 'max:255'],
             'guardian_occupation' => ['required', 'string', 'max:255'],
             'annual_income_amount' => ['required', 'numeric', 'min:0'],

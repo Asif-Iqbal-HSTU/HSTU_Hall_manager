@@ -226,6 +226,7 @@ export default function Register({
         if (step === 2 && (!formData.student_id || !formData.department || !formData.degree || !formData.current_cgpa)) return;
         if (step === 3 && (!formData.perm_district || !formData.perm_upazilla || !formData.perm_village_area || fetchingDistance)) return;
         if (step === 4 && formData.status === 'Residential' && (!formData.hall_id || !formData.room_no || !formData.seat_no)) return;
+        if (step === 5 && (!formData.father_name || !formData.mother_name || !formData.guardian_occupation || !formData.annual_income_amount)) return;
         
         setStep(prev => Math.min(prev + 1, 5));
     };
@@ -240,15 +241,15 @@ export default function Register({
             <div className="min-h-screen bg-slate-50 text-slate-900 font-sans dark:bg-slate-950 dark:text-slate-100 selection:bg-indigo-500 selection:text-white flex flex-col justify-between">
                 
                 {/* Minimal Header */}
-                <header className="px-6 py-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <img className="h-9 w-auto" src="/images/hstu_logo.png" alt="HSTU Logo" />
-                        <span className="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
+                <header className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
+                    <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+                        <img className="h-8 sm:h-9 w-auto" src="/images/hstu_logo.png" alt="HSTU Logo" />
+                        <span className="font-bold text-base sm:text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">
                             HSTU Hall Portal
                         </span>
                     </Link>
-                    <div className="text-sm">
-                        Already registered?{' '}
+                    <div className="text-xs sm:text-sm shrink-0">
+                        <span className="hidden xs:inline">Already registered? </span>
                         <Link href={login()} className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
                             Log in &rarr;
                         </Link>
@@ -256,16 +257,16 @@ export default function Register({
                 </header>
 
                 {/* Main Content Area */}
-                <main className="flex-1 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
+                <main className="flex-1 flex items-center justify-center p-3 sm:p-6 md:p-12 relative overflow-hidden">
                     {/* Background Decorative Blob */}
                     <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
                         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#9089fc] to-[#f472b6] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72rem]" />
                     </div>
 
-                    <div className="w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-4 min-h-[500px]">
+                    <div className="w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-4 min-h-[500px]">
                         
                         {/* Left Sidebar Steps Navigator (Web) */}
-                        <div className="bg-slate-50 dark:bg-slate-950 p-8 border-r border-slate-200 dark:border-slate-800 hidden lg:block col-span-1">
+                        <div className="bg-slate-50 dark:bg-slate-950 p-6 lg:p-8 border-r border-slate-200 dark:border-slate-800 hidden lg:block col-span-1">
                             <div className="space-y-6">
                                 <h3 className="font-bold text-slate-400 text-xs uppercase tracking-wider mb-8">Registration Steps</h3>
                                 {steps.map((s) => {
@@ -297,26 +298,53 @@ export default function Register({
                         </div>
 
                         {/* Right Content Form Area */}
-                        <div className="p-8 lg:p-12 col-span-3 flex flex-col justify-between">
+                        <div className="p-4 sm:p-8 lg:p-12 col-span-1 lg:col-span-3 flex flex-col justify-between">
                             
                             {/* Step Indicator (Mobile) */}
-                            <div className="lg:hidden flex items-center justify-between mb-8 pb-4 border-b">
-                                <span className="font-bold text-sm text-indigo-600">
-                                    Step {step} of 5: {steps[step - 1].title}
-                                </span>
-                                <div className="flex gap-1">
-                                    {steps.map((s) => (
-                                        <div 
-                                            key={s.id} 
-                                            className={`h-1.5 w-6 rounded-full transition-all ${
-                                                s.id === step 
-                                                    ? 'bg-indigo-600' 
-                                                    : s.id < step 
-                                                        ? 'bg-green-500' 
-                                                        : 'bg-slate-200 dark:bg-slate-800'
-                                            }`} 
-                                        />
-                                    ))}
+                            <div className="lg:hidden mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                                <div className="flex items-center justify-between gap-2 mb-3">
+                                    <span className="font-extrabold text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                                        Step {step} of 5 &bull; {steps[step - 1].title}
+                                    </span>
+                                    <span className="text-xs font-semibold text-slate-400">
+                                        {Math.round((step / 5) * 100)}%
+                                    </span>
+                                </div>
+
+                                {/* Step Pills Bar for Mobile */}
+                                <div className="grid grid-cols-5 gap-1.5">
+                                    {steps.map((s) => {
+                                        const IconComponent = s.icon;
+                                        const isActive = s.id === step;
+                                        const isCompleted = s.id < step;
+                                        return (
+                                            <button
+                                                key={s.id}
+                                                type="button"
+                                                disabled={!isCompleted && !isActive}
+                                                onClick={() => isCompleted && setStep(s.id)}
+                                                className={`flex flex-col items-center py-2 px-1 rounded-xl transition-all ${
+                                                    isActive 
+                                                        ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 ring-1 ring-indigo-500/30 font-bold' 
+                                                        : isCompleted 
+                                                            ? 'bg-green-50 dark:bg-green-950/30 text-green-600 dark:text-green-400 cursor-pointer hover:bg-green-100' 
+                                                            : 'bg-slate-50 dark:bg-slate-900/50 text-slate-400 dark:text-slate-600 opacity-60 cursor-not-allowed'
+                                                }`}
+                                                title={s.title}
+                                            >
+                                                <div className="flex items-center justify-center">
+                                                    {isCompleted ? (
+                                                        <Check className="w-4 h-4 stroke-[3]" />
+                                                    ) : (
+                                                        <IconComponent className="w-4 h-4" />
+                                                    )}
+                                                </div>
+                                                <span className="text-[10px] font-medium mt-1 truncate max-w-full hidden xs:block">
+                                                    {s.title}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             </div>
 
@@ -330,8 +358,8 @@ export default function Register({
                                         {/* STEP 1: Account Details */}
                                         <div className={step !== 1 ? 'hidden' : 'space-y-6'}>
                                             <div className="space-y-1">
-                                                <h2 className="text-2xl font-extrabold tracking-tight">Create your account</h2>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">Enter your core identification credentials.</p>
+                                                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Create your account</h2>
+                                                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Enter your core identification credentials.</p>
                                             </div>
 
                                             <div className="grid gap-4">
@@ -341,7 +369,6 @@ export default function Register({
                                                         id="name"
                                                         name="name"
                                                         type="text"
-                                                        required
                                                         placeholder="e.g. Asif Iqbal"
                                                         value={formData.name}
                                                         onChange={(e) => handleChange('name', e.target.value)}
@@ -355,7 +382,6 @@ export default function Register({
                                                         id="email"
                                                         name="email"
                                                         type="email"
-                                                        required
                                                         placeholder="yourname@domain.com"
                                                         value={formData.email}
                                                         onChange={(e) => handleChange('email', e.target.value)}
@@ -368,18 +394,18 @@ export default function Register({
                                         {/* STEP 2: Academics */}
                                         <div className={step !== 2 ? 'hidden' : 'space-y-6'}>
                                             <div className="space-y-1">
-                                                <h2 className="text-2xl font-extrabold tracking-tight">Academic Information</h2>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">Provide your official university academic records.</p>
+                                                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Academic Information</h2>
+                                                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Provide your official university academic records.</p>
                                             </div>
 
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div className="grid gap-2 col-span-2">
-                                                    <Label htmlFor="student_id">Student ID</Label>
+                                            <div className="space-y-5">
+                                                {/* Student ID */}
+                                                <div className="grid gap-2">
+                                                    <Label htmlFor="student_id" className="font-semibold text-xs sm:text-sm">Student ID</Label>
                                                     <Input
                                                         id="student_id"
                                                         name="student_id"
                                                         type="text"
-                                                        required
                                                         placeholder="e.g. 1902001"
                                                         value={formData.student_id}
                                                         onChange={(e) => handleChange('student_id', e.target.value)}
@@ -387,122 +413,137 @@ export default function Register({
                                                     <InputError message={errors.student_id} />
                                                 </div>
 
-                                                <div className="grid gap-2">
-                                                    <Label htmlFor="department">Faculty</Label>
-                                                    <select
-                                                        id="department"
-                                                        name="department"
-                                                        required
-                                                        className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                                                        value={formData.department}
-                                                        onChange={(e) => {
-                                                            handleChange('department', e.target.value);
-                                                            handleChange('degree', '');
-                                                            setIsCustomDegree(false);
-                                                        }}
-                                                    >
-                                                        <option value="">-- Select Faculty --</option>
-                                                        <option value="Agriculture">Faculty of Agriculture</option>
-                                                        <option value="Computer Science and Engineering">Faculty of Computer Science and Engineering</option>
-                                                        <option value="Business Studies">Faculty of Business Studies</option>
-                                                        <option value="Fisheries">Faculty of Fisheries</option>
-                                                        <option value="Veterinary and Animal Science">Faculty of Veterinary and Animal Science</option>
-                                                        <option value="Engineering">Faculty of Engineering</option>
-                                                        <option value="Science">Faculty of Science</option>
-                                                        <option value="Social Science and Humanities">Faculty of Social Science and Humanities</option>
-                                                    </select>
-                                                    <InputError message={errors.department} />
-                                                </div>
+                                                {/* Section 1: Faculty & Program */}
+                                                <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-3">
+                                                    <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                                                        <GraduationCap className="w-3.5 h-3.5" />
+                                                        Faculty & Degree Program
+                                                    </h4>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div className="grid gap-2">
+                                                            <Label htmlFor="department" className="text-xs font-medium">Faculty</Label>
+                                                            <select
+                                                                id="department"
+                                                                name="department"
+                                                                className="w-full border rounded-md px-3 py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                                value={formData.department}
+                                                                onChange={(e) => {
+                                                                    handleChange('department', e.target.value);
+                                                                    handleChange('degree', '');
+                                                                    setIsCustomDegree(false);
+                                                                }}
+                                                            >
+                                                                <option value="">-- Select Faculty --</option>
+                                                                <option value="Agriculture">Faculty of Agriculture</option>
+                                                                <option value="Computer Science and Engineering">Faculty of Computer Science and Engineering</option>
+                                                                <option value="Business Studies">Faculty of Business Studies</option>
+                                                                <option value="Fisheries">Faculty of Fisheries</option>
+                                                                <option value="Veterinary and Animal Science">Faculty of Veterinary and Animal Science</option>
+                                                                <option value="Engineering">Faculty of Engineering</option>
+                                                                <option value="Science">Faculty of Science</option>
+                                                                <option value="Social Science and Humanities">Faculty of Social Science and Humanities</option>
+                                                            </select>
+                                                            <InputError message={errors.department} />
+                                                        </div>
 
-                                                <div className="grid gap-2">
-                                                    <Label htmlFor="degree">Degree Program</Label>
-                                                    {isCustomDegree || !formData.department ? (
-                                                        <div className="flex gap-2">
-                                                            <div className="flex-1">
-                                                                <Input
+                                                        <div className="grid gap-2">
+                                                            <Label htmlFor="degree" className="text-xs font-medium">Degree Program</Label>
+                                                            {isCustomDegree || !formData.department ? (
+                                                                <div className="flex flex-col sm:flex-row gap-2">
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <Input
+                                                                            id="degree"
+                                                                            name="degree"
+                                                                            type="text"
+                                                                            placeholder="e.g. MSc in CSE"
+                                                                            value={formData.degree}
+                                                                            onChange={(e) => handleChange('degree', e.target.value)}
+                                                                        />
+                                                                    </div>
+                                                                    {formData.department && (
+                                                                        <Button 
+                                                                            type="button" 
+                                                                            variant="outline" 
+                                                                            onClick={() => {
+                                                                                setIsCustomDegree(false);
+                                                                                handleChange('degree', '');
+                                                                            }}
+                                                                            className="text-xs shrink-0 h-10 sm:h-9"
+                                                                        >
+                                                                            Suggest
+                                                                        </Button>
+                                                                    )}
+                                                                </div>
+                                                            ) : (
+                                                                <select
                                                                     id="degree"
                                                                     name="degree"
-                                                                    type="text"
-                                                                    required
-                                                                    placeholder="e.g. MSc in CSE"
+                                                                    className="w-full border rounded-md px-3 py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 truncate"
                                                                     value={formData.degree}
-                                                                    onChange={(e) => handleChange('degree', e.target.value)}
-                                                                />
-                                                            </div>
-                                                            {formData.department && (
-                                                                <Button 
-                                                                    type="button" 
-                                                                    variant="outline" 
-                                                                    onClick={() => {
-                                                                        setIsCustomDegree(false);
-                                                                        handleChange('degree', '');
+                                                                    onChange={(e) => {
+                                                                        if (e.target.value === 'custom_other') {
+                                                                            setIsCustomDegree(true);
+                                                                            handleChange('degree', '');
+                                                                        } else {
+                                                                            handleChange('degree', e.target.value);
+                                                                        }
                                                                     }}
-                                                                    className="text-xs"
                                                                 >
-                                                                    Suggest
-                                                                </Button>
+                                                                    <option value="">-- Select Degree --</option>
+                                                                    {(suggestedDegrees[formData.department] || []).map((deg) => (
+                                                                        <option key={deg} value={deg}>{deg}</option>
+                                                                    ))}
+                                                                    <option value="custom_other">Other (Enter manually...)</option>
+                                                                </select>
                                                             )}
+                                                            <InputError message={errors.degree} />
                                                         </div>
-                                                    ) : (
-                                                        <select
-                                                            id="degree"
-                                                            name="degree"
-                                                            required
-                                                            className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                                                            value={formData.degree}
-                                                            onChange={(e) => {
-                                                                if (e.target.value === 'custom_other') {
-                                                                    setIsCustomDegree(true);
-                                                                    handleChange('degree', '');
-                                                                } else {
-                                                                    handleChange('degree', e.target.value);
-                                                                }
-                                                            }}
-                                                        >
-                                                            <option value="">-- Select Degree --</option>
-                                                            {(suggestedDegrees[formData.department] || []).map((deg) => (
-                                                                <option key={deg} value={deg}>{deg}</option>
-                                                            ))}
-                                                            <option value="custom_other">Other (Enter manually...)</option>
-                                                        </select>
-                                                    )}
-                                                    <InputError message={errors.degree} />
+                                                    </div>
                                                 </div>
 
+                                                {/* Section 2: Level & Semester */}
+                                                <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-3">
+                                                    <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                                                        Level & Semester
+                                                    </h4>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div className="grid gap-2">
+                                                            <Label htmlFor="level" className="text-xs font-medium">Level</Label>
+                                                            <select
+                                                                id="level"
+                                                                name="level"
+                                                                className="w-full border rounded-md px-3 py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                                value={formData.level}
+                                                                onChange={(e) => handleChange('level', e.target.value)}
+                                                            >
+                                                                <option value="1">Level 1</option>
+                                                                <option value="2">Level 2</option>
+                                                                <option value="3">Level 3</option>
+                                                                <option value="4">Level 4</option>
+                                                            </select>
+                                                            <InputError message={errors.level} />
+                                                        </div>
+
+                                                        <div className="grid gap-2">
+                                                            <Label htmlFor="semester" className="text-xs font-medium">Semester</Label>
+                                                            <select
+                                                                id="semester"
+                                                                name="semester"
+                                                                className="w-full border rounded-md px-3 py-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                                                                value={formData.semester}
+                                                                onChange={(e) => handleChange('semester', e.target.value)}
+                                                            >
+                                                                <option value="I">Semester I</option>
+                                                                <option value="II">Semester II</option>
+                                                            </select>
+                                                            <InputError message={errors.semester} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Current CGPA */}
                                                 <div className="grid gap-2">
-                                                    <Label htmlFor="level">Level</Label>
-                                                    <select
-                                                        id="level"
-                                                        name="level"
-                                                        className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                                                        value={formData.level}
-                                                        onChange={(e) => handleChange('level', e.target.value)}
-                                                    >
-                                                        <option value="1">Level 1</option>
-                                                        <option value="2">Level 2</option>
-                                                        <option value="3">Level 3</option>
-                                                        <option value="4">Level 4</option>
-                                                    </select>
-                                                    <InputError message={errors.level} />
-                                                </div>
-
-                                                <div className="grid gap-2">
-                                                    <Label htmlFor="semester">Semester</Label>
-                                                    <select
-                                                        id="semester"
-                                                        name="semester"
-                                                        className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                                                        value={formData.semester}
-                                                        onChange={(e) => handleChange('semester', e.target.value)}
-                                                    >
-                                                        <option value="I">Semester I</option>
-                                                        <option value="II">Semester II</option>
-                                                    </select>
-                                                    <InputError message={errors.semester} />
-                                                </div>
-
-                                                <div className="grid gap-2 col-span-2">
-                                                    <Label htmlFor="current_cgpa">Current CGPA</Label>
+                                                    <Label htmlFor="current_cgpa" className="font-semibold text-xs sm:text-sm">Current CGPA</Label>
                                                     <Input
                                                         id="current_cgpa"
                                                         name="current_cgpa"
@@ -510,7 +551,6 @@ export default function Register({
                                                         step="0.01"
                                                         min="0.00"
                                                         max="4.00"
-                                                        required
                                                         placeholder="0.00 - 4.00"
                                                         value={formData.current_cgpa}
                                                         onChange={(e) => handleChange('current_cgpa', e.target.value)}
@@ -523,11 +563,11 @@ export default function Register({
                                         {/* STEP 3: Address Details */}
                                         <div className={step !== 3 ? 'hidden' : 'space-y-6'}>
                                             <div className="space-y-1">
-                                                <h2 className="text-2xl font-extrabold tracking-tight">Address Details</h2>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">Fill in your present and permanent address parameters.</p>
+                                                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Address Details</h2>
+                                                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Fill in your present and permanent address parameters.</p>
                                             </div>
 
-                                            <div className="space-y-4 max-h-[380px] overflow-y-auto pr-2">
+                                            <div className="space-y-4 max-h-none md:max-h-[400px] overflow-y-auto pr-1 sm:pr-2">
                                                 {/* Permanent Address */}
                                                 <div className="space-y-3">
                                                     <h4 className="font-bold text-sm text-indigo-600 dark:text-indigo-400 border-b pb-1">Permanent Address</h4>
@@ -537,7 +577,7 @@ export default function Register({
                                                             <select
                                                                 id="perm_district"
                                                                 name="perm_district"
-                                                                className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                                 value={formData.perm_district}
                                                                 onChange={(e) => handleDistrictChange('perm_district', e.target.value)}
                                                             >
@@ -553,7 +593,7 @@ export default function Register({
                                                             <select
                                                                 id="perm_upazilla"
                                                                 name="perm_upazilla"
-                                                                className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                                 disabled={!formData.perm_district}
                                                                 value={formData.perm_upazilla}
                                                                 onChange={(e) => handleUpazillaChange('perm_upazilla', e.target.value)}
@@ -565,7 +605,7 @@ export default function Register({
                                                             </select>
                                                             <InputError message={errors.perm_upazilla} />
                                                         </div>
-                                                        <div className="grid gap-1 col-span-2">
+                                                        <div className="grid gap-1 md:col-span-2">
                                                             <Label htmlFor="perm_village_area" className="text-xs">Village / Area</Label>
                                                             <Input
                                                                 id="perm_village_area"
@@ -581,14 +621,14 @@ export default function Register({
 
                                                 {/* Present Address */}
                                                 <div className="space-y-3 pt-3">
-                                                    <div className="flex justify-between items-center border-b pb-1">
+                                                    <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-1">
                                                         <h4 className="font-bold text-sm text-indigo-600 dark:text-indigo-400">Present Address</h4>
-                                                        <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer">
+                                                        <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer py-1">
                                                             <input 
                                                                 type="checkbox" 
                                                                 checked={sameAddress} 
                                                                 onChange={(e) => handleSameAddressChange(e.target.checked)} 
-                                                                className="rounded border-slate-300 text-indigo-600"
+                                                                className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                                                             />
                                                             Same as Permanent
                                                         </label>
@@ -600,7 +640,7 @@ export default function Register({
                                                                 <select
                                                                     id="pres_district"
                                                                     name="pres_district"
-                                                                    className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                    className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                                     value={formData.pres_district}
                                                                     onChange={(e) => handleDistrictChange('pres_district', e.target.value)}
                                                                 >
@@ -616,7 +656,7 @@ export default function Register({
                                                                 <select
                                                                     id="pres_upazilla"
                                                                     name="pres_upazilla"
-                                                                    className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                    className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                                     disabled={!formData.pres_district}
                                                                     value={formData.pres_upazilla}
                                                                     onChange={(e) => handleUpazillaChange('pres_upazilla', e.target.value)}
@@ -628,7 +668,7 @@ export default function Register({
                                                                 </select>
                                                                 <InputError message={errors.pres_upazilla} />
                                                             </div>
-                                                            <div className="grid gap-1 col-span-2">
+                                                            <div className="grid gap-1 md:col-span-2">
                                                                 <Label htmlFor="pres_village_area" className="text-xs">Village / Area</Label>
                                                                 <Input
                                                                     id="pres_village_area"
@@ -642,15 +682,15 @@ export default function Register({
                                                         </div>
                                                     )}
                                                     {/* Distance calculation display & hidden fields */}
-                                                    <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-xl flex flex-col md:flex-row justify-between items-center text-sm gap-2 border border-slate-200 dark:border-slate-800">
-                                                        <span className="font-semibold text-slate-600 dark:text-slate-400">Calculated Distance from Campus:</span>
+                                                    <div className="bg-slate-50 dark:bg-slate-950 p-3.5 sm:p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm gap-2 border border-slate-200 dark:border-slate-800">
+                                                        <span className="font-semibold text-slate-600 dark:text-slate-400 text-xs sm:text-sm">Calculated Distance from Campus:</span>
                                                         {fetchingDistance ? (
                                                             <div className="flex items-center gap-2">
                                                                 <Spinner className="w-4 h-4 text-indigo-600" />
                                                                 <span className="text-xs text-muted-foreground">Calculating via iBAS++...</span>
                                                             </div>
                                                         ) : (
-                                                            <span className="font-bold text-indigo-600 dark:text-indigo-400 text-lg">
+                                                            <span className="font-bold text-indigo-600 dark:text-indigo-400 text-base sm:text-lg">
                                                                 {formData.distance_from_home} km
                                                             </span>
                                                         )}
@@ -672,8 +712,8 @@ export default function Register({
                                         {/* STEP 4: Residential */}
                                         <div className={step !== 4 ? 'hidden' : 'space-y-6'}>
                                             <div className="space-y-1">
-                                                <h2 className="text-2xl font-extrabold tracking-tight">Residential Status</h2>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">Select your current hall residency status.</p>
+                                                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Residential Status</h2>
+                                                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Select your current hall residency status.</p>
                                             </div>
 
                                             <div className="grid gap-4">
@@ -682,7 +722,7 @@ export default function Register({
                                                     <select
                                                         id="status"
                                                         name="status"
-                                                        className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                        className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                         value={formData.status}
                                                         onChange={(e) => handleChange('status', e.target.value)}
                                                     >
@@ -699,7 +739,7 @@ export default function Register({
                                                             <select
                                                                 id="hall_id"
                                                                 name="hall_id"
-                                                                className="w-full border rounded-md p-2 bg-transparent text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                className="w-full border rounded-md px-3 py-2 bg-transparent text-base md:text-sm dark:bg-slate-900 border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                                                                 value={formData.hall_id}
                                                                 onChange={(e) => handleChange('hall_id', e.target.value)}
                                                             >
@@ -712,36 +752,34 @@ export default function Register({
                                                         </div>
 
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                             <div className="grid gap-2">
-                                                                 <Label htmlFor="room_no">Room No.</Label>
-                                                                 <Input
-                                                                     id="room_no"
-                                                                     name="room_no"
-                                                                     type="text"
-                                                                     placeholder="e.g. 305"
-                                                                     required={formData.status === 'Residential'}
-                                                                     disabled={!formData.hall_id}
-                                                                     value={formData.room_no}
-                                                                     onChange={(e) => handleChange('room_no', e.target.value)}
-                                                                 />
-                                                                 <InputError message={errors.room_no} />
-                                                             </div>
+                                                            <div className="grid gap-2">
+                                                                <Label htmlFor="room_no">Room No.</Label>
+                                                                <Input
+                                                                    id="room_no"
+                                                                    name="room_no"
+                                                                    type="text"
+                                                                    placeholder="e.g. 305"
+                                                                    disabled={!formData.hall_id}
+                                                                    value={formData.room_no}
+                                                                    onChange={(e) => handleChange('room_no', e.target.value)}
+                                                                />
+                                                                <InputError message={errors.room_no} />
+                                                            </div>
 
-                                                             <div className="grid gap-2">
-                                                                 <Label htmlFor="seat_no">Seat No.</Label>
-                                                                 <Input
-                                                                     id="seat_no"
-                                                                     name="seat_no"
-                                                                     type="text"
-                                                                     placeholder="e.g. 305-A"
-                                                                     required={formData.status === 'Residential'}
-                                                                     disabled={!formData.hall_id}
-                                                                     value={formData.seat_no}
-                                                                     onChange={(e) => handleChange('seat_no', e.target.value)}
-                                                                 />
-                                                                 <InputError message={errors.seat_no} />
-                                                             </div>
-                                                         </div>
+                                                            <div className="grid gap-2">
+                                                                <Label htmlFor="seat_no">Seat No.</Label>
+                                                                <Input
+                                                                    id="seat_no"
+                                                                    name="seat_no"
+                                                                    type="text"
+                                                                    placeholder="e.g. 305-A"
+                                                                    disabled={!formData.hall_id}
+                                                                    value={formData.seat_no}
+                                                                    onChange={(e) => handleChange('seat_no', e.target.value)}
+                                                                />
+                                                                <InputError message={errors.seat_no} />
+                                                            </div>
+                                                        </div>
 
                                                         <div className="grid gap-2">
                                                             <Label htmlFor="staying_from">Staying From (Optional)</Label>
@@ -762,13 +800,13 @@ export default function Register({
                                         {/* STEP 5: Guardian Details */}
                                         <div className={step !== 5 ? 'hidden' : 'space-y-6'}>
                                             <div className="space-y-1">
-                                                <h2 className="text-2xl font-extrabold tracking-tight">Guardian & Financials</h2>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">Fill in family and financial parameters.</p>
+                                                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Guardian & Financials</h2>
+                                                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Fill in family and financial parameters.</p>
                                             </div>
 
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                 <div className="grid gap-2">
-                                                    <Label htmlFor="father_name">Father's Name (Optional)</Label>
+                                                    <Label htmlFor="father_name">Father's Name</Label>
                                                     <Input
                                                         id="father_name"
                                                         name="father_name"
@@ -780,7 +818,7 @@ export default function Register({
                                                 </div>
 
                                                 <div className="grid gap-2">
-                                                    <Label htmlFor="mother_name">Mother's Name (Optional)</Label>
+                                                    <Label htmlFor="mother_name">Mother's Name</Label>
                                                     <Input
                                                         id="mother_name"
                                                         name="mother_name"
@@ -791,12 +829,11 @@ export default function Register({
                                                     <InputError message={errors.mother_name} />
                                                 </div>
 
-                                                <div className="grid gap-2 col-span-2">
+                                                <div className="grid gap-2 md:col-span-2">
                                                     <Label htmlFor="guardian_occupation">Guardian's Occupation</Label>
                                                     <Input
                                                         id="guardian_occupation"
                                                         name="guardian_occupation"
-                                                        required
                                                         placeholder="e.g. Farmer, Teacher, Businessman"
                                                         value={formData.guardian_occupation}
                                                         onChange={(e) => handleChange('guardian_occupation', e.target.value)}
@@ -804,13 +841,12 @@ export default function Register({
                                                     <InputError message={errors.guardian_occupation} />
                                                 </div>
 
-                                                <div className="grid gap-2 col-span-2">
+                                                <div className="grid gap-2 md:col-span-2">
                                                     <Label htmlFor="annual_income_amount">Guardian's Annual Income (Tk)</Label>
                                                     <Input
                                                         id="annual_income_amount"
                                                         name="annual_income_amount"
                                                         type="number"
-                                                        required
                                                         placeholder="Yearly income amount in BDT"
                                                         value={formData.annual_income_amount}
                                                         onChange={(e) => handleChange('annual_income_amount', e.target.value)}
@@ -819,7 +855,7 @@ export default function Register({
                                                 </div>
                                             </div>
 
-                                            <div className="p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/50 flex items-start gap-3 mt-4 text-xs">
+                                            <div className="p-3.5 sm:p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/50 flex items-start gap-3 mt-4 text-xs">
                                                 <Lock className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
                                                 <div>
                                                     <span className="font-bold block mb-0.5 text-indigo-950 dark:text-indigo-200">Secure Password Auto-generation</span>
@@ -829,32 +865,32 @@ export default function Register({
                                         </div>
 
                                         {/* Action buttons */}
-                                        <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+                                        <div className="flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
                                             {step > 1 ? (
                                                 <Button 
                                                     type="button" 
                                                     variant="outline" 
                                                     onClick={prevStep}
-                                                    className="gap-2 rounded-full border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
+                                                    className="w-full sm:w-auto h-11 sm:h-10 gap-2 rounded-full border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 justify-center"
                                                 >
                                                     <ArrowLeft className="w-4 h-4" /> Back
                                                 </Button>
                                             ) : (
-                                                <div />
+                                                <div className="hidden sm:block" />
                                             )}
 
                                             {step < 5 ? (
                                                 <Button 
                                                     type="button" 
                                                     onClick={nextStep}
-                                                    className="bg-indigo-600 text-white hover:bg-indigo-500 gap-2 rounded-full px-6 shadow-md shadow-indigo-600/10 hover:shadow-lg"
+                                                    className="w-full sm:w-auto h-11 sm:h-10 bg-indigo-600 text-white hover:bg-indigo-500 gap-2 rounded-full px-6 shadow-md shadow-indigo-600/10 hover:shadow-lg justify-center"
                                                 >
                                                     Next <ArrowRight className="w-4 h-4" />
                                                 </Button>
                                             ) : (
                                                 <Button 
                                                     type="submit" 
-                                                    className="bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white gap-2 rounded-full px-8 shadow-md"
+                                                    className="w-full sm:w-auto h-11 sm:h-10 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white gap-2 rounded-full px-8 shadow-md justify-center"
                                                     data-test="register-user-button"
                                                 >
                                                     {processing && <Spinner />}
