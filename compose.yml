@@ -77,6 +77,11 @@ services:
     image: mysql:8.4
     container_name: hstu_hall_mysql
     restart: unless-stopped
+    # Bind only to the server's loopback so the DB is reachable through an SSH
+    # tunnel (e.g. TablePlus "Over SSH") but never exposed to the public
+    # internet. The public IP / Oracle firewall never sees port 3306.
+    ports:
+      - "127.0.0.1:3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
