@@ -117,6 +117,9 @@ services:
       start_period: 30s
     networks:
       - backend
+      # Non-internal network so the loopback-published 3306 port works
+      # (Docker cannot publish host ports from an internal-only network).
+      - dbaccess
 
   # ====================================
   #         Cloudflare Tunnel
@@ -158,6 +161,10 @@ networks:
     driver: bridge
   backend:
     internal: true
+    driver: bridge
+  # Non-internal network used only to publish MySQL on the server's loopback
+  # for SSH-tunnelled admin access (e.g. TablePlus). Not the internet.
+  dbaccess:
     driver: bridge
 
 volumes:
