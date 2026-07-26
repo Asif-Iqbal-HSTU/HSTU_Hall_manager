@@ -162,12 +162,12 @@ class ClearanceController extends Controller
                 'hall_id' => $user->hall_id,
                 'amount' => $validated['amount'],
                 'payment_method' => $validated['payment_method'],
-                'bank_name' => $validated['bank_name'],
-                'transaction_ref' => $validated['transaction_ref'],
-                'voucher_no' => $validated['voucher_no'],
+                'bank_name' => $validated['bank_name'] ?? null,
+                'transaction_ref' => $validated['transaction_ref'] ?? null,
+                'voucher_no' => $validated['voucher_no'] ?? null,
                 'paid_on' => $validated['paid_on'],
                 'verified_by' => $user->id,
-                'remarks' => $validated['remarks'],
+                'remarks' => $validated['remarks'] ?? null,
             ]
         );
 
