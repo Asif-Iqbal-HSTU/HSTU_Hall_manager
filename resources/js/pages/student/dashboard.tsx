@@ -1,11 +1,11 @@
-import { Head, usePage, router } from '@inertiajs/react';
+import { Head, usePage, router, Link } from '@inertiajs/react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import student from '@/routes/student';
 import { Badge } from '@/components/ui/badge';
-import { User, MapPin, GraduationCap, Home, HeartHandshake, Copy, Check, Info } from 'lucide-react';
+import { User, MapPin, GraduationCap, Home, HeartHandshake, Copy, Check, Info, Wallet, BadgeCheck, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function StudentDashboard() {
@@ -17,6 +17,7 @@ export default function StudentDashboard() {
     const guardian = props.guardian as any;
     const application = props.application as any;
     const hall = props.hall as any;
+    const clearance = props.clearance as any;
     const { flash } = props as any;
 
     const tempPassword = flash?.generated_password;
@@ -76,6 +77,34 @@ export default function StudentDashboard() {
                         </Badge>
                     )}
                 </div>
+
+                {/* Hall fee clearance summary */}
+                {clearance && (
+                    <Link href="/clearance" className="block">
+                        <div className={`flex items-center justify-between gap-4 rounded-2xl border p-5 shadow-sm transition-all hover:shadow-md ${
+                            clearance.paid
+                                ? 'bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900/50'
+                                : 'bg-amber-50 border-amber-200 dark:bg-amber-950/20 dark:border-amber-900/50'
+                        }`}>
+                            <div className="flex items-center gap-3">
+                                <Wallet className={`w-8 h-8 ${clearance.paid ? 'text-green-600' : 'text-amber-600'}`} />
+                                <div>
+                                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                                        Hall Fee — Level {clearance.level} (Tk. {Number(clearance.amount).toLocaleString()})
+                                    </p>
+                                    <p className="text-xs text-slate-500 mt-0.5">
+                                        {clearance.paid ? 'Cleared — download your clearance certificate.' : 'Not cleared — download the voucher and pay to clear.'}
+                                    </p>
+                                </div>
+                            </div>
+                            {clearance.paid ? (
+                                <Badge className="bg-green-100 text-green-800 dark:bg-green-950/40 dark:text-green-300 border-none gap-1"><BadgeCheck className="w-4 h-4" /> Paid</Badge>
+                            ) : (
+                                <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-950/40 dark:text-amber-300 border-none gap-1"><AlertCircle className="w-4 h-4" /> Due</Badge>
+                            )}
+                        </div>
+                    </Link>
+                )}
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Left & Middle Column */}

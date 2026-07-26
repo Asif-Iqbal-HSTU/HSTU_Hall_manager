@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid, Utensils } from 'lucide-react';
+import { BookOpen, FolderGit2, LayoutGrid, Utensils, MessageSquareWarning, Wallet } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -39,6 +39,10 @@ export function AppSidebar() {
         ? '/admin/canteen' 
         : '/canteen';
 
+    const isAuthority = !!user && (user.role === 'admin' || user.role === 'hall_super');
+    const complaintsHref = isAuthority ? '/admin/complaints' : '/complaints';
+    const clearanceHref = isAuthority ? '/admin/clearance' : '/clearance';
+
     const items: NavItem[] = [
         {
             title: 'Dashboard',
@@ -49,7 +53,17 @@ export function AppSidebar() {
             title: 'Canteen',
             href: canteenHref,
             icon: Utensils,
-        }
+        },
+        {
+            title: 'Hall Clearance',
+            href: clearanceHref,
+            icon: Wallet,
+        },
+        {
+            title: isAuthority ? 'Complaints' : 'Complaint Box',
+            href: complaintsHref,
+            icon: MessageSquareWarning,
+        },
     ];
 
     return (

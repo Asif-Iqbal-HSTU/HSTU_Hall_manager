@@ -49,6 +49,49 @@ class User extends Authenticatable
     {
         return $this->hasOne(StaffProfile::class);
     }
+
+    public function feePayments()
+    {
+        return $this->hasMany(FeePayment::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
+
+    /**
+     * Per-level hall-fee clearance summary for this student, up to their
+     * current level. Each row: level, amount due, and whether it is paid.
+     *
+     * @return array<int, array{level:int, amount:float, paid:bool, payment:?FeePayment}>
+     */
+    public function clearanceSummary(): array
+    {
+        $currentLevel = (int) optional($this->academic)->level;
+        if (! $currentLevel || ! $this->hall_id) {
+            return [];
+        }
+
+        $structures = FeeStructure::where('hall_id', $this->hall_id)
+            ->whereIn('level', range(1, $currentLevel))
+            ->pluck('amount', 'level');
+        $payments = $this->feePayments()->whereIn('level', range(1, $currentLevel))->get()->keyBy('level');
+
+        $rows = [];
+        for ($level = 1; $level <= $currentLevel; $level++) {
+            $payment = $payments->get($level);
+            $rows[] = [
+                'level' => $level,
+                'amount' => (float) ($structures[$level] ?? 0),
+                'paid' => (bool) $payment,
+                'payment' => $payment,
+            ];
+        }
+
+        return $rows;
+    }
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 

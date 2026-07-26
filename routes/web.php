@@ -28,6 +28,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/canteen/costing/delete', [\App\Http\Controllers\CanteenController::class, 'deleteCosting'])->name('canteen.deleteCosting');
     Route::get('/admin/canteen/meal-list', [\App\Http\Controllers\CanteenController::class, 'mealBookingList'])->name('canteen.mealList');
     Route::get('/admin/canteen/meal-list/pdf', [\App\Http\Controllers\CanteenController::class, 'mealBookingListPdf'])->name('canteen.mealListPdf');
+
+    // Complaint (anonymous) Routes
+    Route::get('/complaints', [\App\Http\Controllers\ComplaintController::class, 'index'])->name('complaints.index');
+    Route::post('/complaints', [\App\Http\Controllers\ComplaintController::class, 'store'])->name('complaints.store');
+    Route::get('/admin/complaints', [\App\Http\Controllers\ComplaintController::class, 'adminIndex'])->name('complaints.adminIndex');
+    Route::post('/admin/complaints/respond', [\App\Http\Controllers\ComplaintController::class, 'respond'])->name('complaints.respond');
+
+    // Hall Clearance / Fee Routes
+    Route::get('/clearance', [\App\Http\Controllers\ClearanceController::class, 'index'])->name('clearance.index');
+    Route::get('/clearance/voucher', [\App\Http\Controllers\ClearanceController::class, 'voucher'])->name('clearance.voucher');
+    Route::get('/clearance/certificate', [\App\Http\Controllers\ClearanceController::class, 'certificate'])->name('clearance.certificate');
+    Route::get('/admin/clearance', [\App\Http\Controllers\ClearanceController::class, 'adminIndex'])->name('clearance.adminIndex');
+    Route::post('/admin/clearance/record', [\App\Http\Controllers\ClearanceController::class, 'recordPayment'])->name('clearance.record');
+    Route::post('/admin/clearance/fee-structure', [\App\Http\Controllers\ClearanceController::class, 'updateFeeStructure'])->name('clearance.feeStructure');
 });
 
 require __DIR__.'/settings.php';

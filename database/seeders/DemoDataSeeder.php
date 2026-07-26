@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\CanteenCosting;
 use App\Models\CanteenMenu;
+use App\Models\Complaint;
 use App\Models\DistrictDistance;
+use App\Models\FeePayment;
+use App\Models\FeeStructure;
 use App\Models\Floor;
 use App\Models\Hall;
 use App\Models\MealBooking;
@@ -107,6 +110,16 @@ class DemoDataSeeder extends Seeder
             'Friday'    => ['Luchi, Halwa', 'Rice, Mutton Curry, Dal, Borhani', 'Rice, Egg Curry, Vegetables'],
         ];
 
+        // Yearly hall fee per level (charged in the 1st semester of each level).
+        $feeByLevel = [1 => 3000, 2 => 3000, 3 => 3500, 4 => 3500];
+
+        // Sample anonymous complaints (seeded per hall for demo).
+        $sampleComplaints = [
+            ['Cleanliness & Sanitation', 'Washroom on 2nd floor needs cleaning', 'The washrooms on the 2nd floor have not been cleaned for several days. Please arrange regular cleaning.', 'in_progress', 'Cleaning staff has been notified; daily cleaning will resume from tomorrow.'],
+            ['Canteen / Dining', 'Food quality declining', 'The dinner quality has dropped this week and portions are small for the price charged.', 'pending', null],
+            ['Water & Electricity', 'Frequent power outage in Block A', 'There have been repeated power cuts at night in Block A affecting studies.', 'resolved', 'The faulty distribution board has been replaced. Issue resolved.'],
+        ];
+
         // ---- System admin ---------------------------------------------------
         User::create([
             'name' => 'System Administrator',
@@ -138,6 +151,11 @@ class DemoDataSeeder extends Seeder
                 'canteen_default_lunch_price' => 55.00,
                 'canteen_default_dinner_price' => 50.00,
             ]);
+
+            // Fee structure (yearly hall fee per level) for this hall.
+            foreach ($feeByLevel as $lvl => $amt) {
+                FeeStructure::create(['hall_id' => $hall->id, 'level' => $lvl, 'amount' => $amt]);
+            }
 
             // ---- Hall administrator (role=admin, tied to the hall) ----------
             User::create([
@@ -304,6 +322,47 @@ class DemoDataSeeder extends Seeder
                         'staying_from' => null,
                     ]);
                 }
+
+                // Fee payments: allocated students have cleared past levels.
+                // Even-indexed also cleared the current level (fully paid);
+                // odd-indexed still owe the current level (due). Pending
+                // student (s==4) has paid nothing.
+                if ($isAllocated) {
+                    $payThroughLevel = ($s % 2 === 0) ? $level : $level - 1;
+                    for ($lvl = 1; $lvl <= $payThroughLevel; $lvl++) {
+                        FeePayment::create([
+                            'user_id' => $studentUser->id,
+                            'hall_id' => $hall->id,
+                            'level' => $lvl,
+                            'amount' => $feeByLevel[$lvl],
+                            'payment_method' => 'offline',
+                            'bank_name' => 'Sonali Bank PLC, HSTU Branch',
+                            'transaction_ref' => 'TXN' . $studentSerial . $lvl . '00',
+                            'voucher_no' => sprintf('HSTU-%02d-%d-L%d', $hall->id, $studentUser->id, $lvl),
+                            'paid_on' => $now->copy()->subMonths((5 - $lvl) * 2)->toDateString(),
+                            'verified_by' => $provost->id,
+                            'remarks' => 'Verified against sealed bank voucher.',
+                        ]);
+                    }
+                }
+            }
+
+            // ---- Sample anonymous complaints --------------------------------
+            $complainantIds = User::where('hall_id', $hall->id)->where('role', 'student')
+                ->orderBy('id')->take(count($sampleComplaints))->pluck('id')->all();
+            foreach ($sampleComplaints as $ci => $c) {
+                Complaint::create([
+                    'hall_id' => $hall->id,
+                    'user_id' => $complainantIds[$ci] ?? null, // hidden from authority; for the student's own view
+                    'category' => $c[0],
+                    'subject' => $c[1],
+                    'message' => $c[2],
+                    'status' => $c[3],
+                    'response' => $c[4],
+                    'responded_at' => $c[4] ? $now->copy()->subDays($ci + 1) : null,
+                    'created_at' => $now->copy()->subDays($ci + 3),
+                    'updated_at' => $now->copy()->subDays($ci),
+                ]);
             }
 
             // ---- Canteen menu (7 days) + recent costings --------------------
@@ -340,6 +399,7 @@ class DemoDataSeeder extends Seeder
     private function clean(): void
     {
         $tables = [
+            'complaints', 'fee_payments', 'fee_structures',
             'meal_bookings', 'canteen_costings', 'canteen_menus',
             'seat_applications', 'seats', 'rooms', 'floors',
             'student_academics', 'student_addresses', 'student_residentials', 'student_guardians',

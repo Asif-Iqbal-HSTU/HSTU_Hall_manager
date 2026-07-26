@@ -59,13 +59,26 @@ class DashboardController extends Controller
                                                            ->first();
             }
 
+            // Current-level hall-fee clearance status for the profile summary.
+            $clearance = null;
+            if ($user->academic && $user->hall_id) {
+                $level = (int) $user->academic->level;
+                $structure = \App\Models\FeeStructure::where('hall_id', $user->hall_id)->where('level', $level)->first();
+                $clearance = [
+                    'level' => $level,
+                    'amount' => (float) optional($structure)->amount,
+                    'paid' => \App\Models\FeePayment::where('user_id', $user->id)->where('level', $level)->exists(),
+                ];
+            }
+
             return inertia('student/dashboard', [
                 'academic' => $user->academic,
                 'address' => $user->address,
                 'residential' => $user->residential,
                 'guardian' => $user->guardian,
                 'application' => $application,
-                'hall' => $hall
+                'hall' => $hall,
+                'clearance' => $clearance,
             ]);
         }
 
