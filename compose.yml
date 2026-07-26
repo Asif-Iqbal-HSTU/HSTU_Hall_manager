@@ -1,0 +1,162 @@
+name: hstu_hall
+
+services:
+  # ====================================
+  #         Laravel Application
+  # ====================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hstu_hall_app:latest
+    container_name: hstu_hall_app
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+    expose:
+      - "80"
+    environment:
+      - APP_NAME=${APP_NAME}
+      - APP_ENV=${APP_ENV}
+      - APP_KEY=${APP_KEY}
+      - APP_DEBUG=${APP_DEBUG}
+      - APP_URL=${APP_URL}
+      - APP_TIMEZONE=${APP_TIMEZONE}
+      - TZ=${TZ}
+
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+      - SESSION_DRIVER=${SESSION_DRIVER}
+      - SESSION_LIFETIME=${SESSION_LIFETIME}
+      - QUEUE_CONNECTION=${QUEUE_CONNECTION}
+      - CACHE_STORE=${CACHE_STORE}
+      - BROADCAST_CONNECTION=${BROADCAST_CONNECTION}
+      - FILESYSTEM_DISK=${FILESYSTEM_DISK}
+      - TRUSTED_PROXIES=${TRUSTED_PROXIES}
+
+      - MAIL_MAILER=${MAIL_MAILER}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_ENCRYPTION=${MAIL_ENCRYPTION}
+      - MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}
+      - MAIL_FROM_NAME=${MAIL_FROM_NAME}
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          memory: 128M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - app_storage:/var/www/html/storage
+
+  # ====================================
+  #         MySQL 8.4 Database
+  # ====================================
+  mysql:
+    image: mysql:8.4
+    container_name: hstu_hall_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+        reservations:
+          memory: 256M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command:
+      - --skip-name-resolve
+      - --max-connections=100
+      - --local-infile=0
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Imported automatically on FIRST boot only (empty data dir), into ${DB_DATABASE}.
+      - "./hall-hstu-db-backup/Dump20260704.sql:/docker-entrypoint-initdb.d/01-hstu_hall.sql:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - backend
+
+  # ====================================
+  #         Cloudflare Tunnel
+  # ====================================
+  # Dedicated named tunnel for this app (mirrors the irt_ador / journal / emp setup).
+  # Outbound-only connection to the Cloudflare edge — no inbound host ports.
+  # The public hostname (hall-hstu.kernelbt.com) is routed to http://app:80
+  # via the tunnel's Public Hostname config in the Cloudflare dashboard.
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: hstu_hall_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+        reservations:
+          memory: 64M
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+    depends_on:
+      app:
+        condition: service_started
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    internal: true
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+  app_storage:
+    driver: local
