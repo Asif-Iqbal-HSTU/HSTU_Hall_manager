@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/canteen/menu', [\App\Http\Controllers\CanteenController::class, 'updateMenu'])->name('canteen.updateMenu');
     Route::post('/admin/canteen/costing', [\App\Http\Controllers\CanteenController::class, 'updateCosting'])->name('canteen.updateCosting');
     Route::post('/admin/canteen/costing/delete', [\App\Http\Controllers\CanteenController::class, 'deleteCosting'])->name('canteen.deleteCosting');
+    Route::get('/admin/canteen/meal-list', [\App\Http\Controllers\CanteenController::class, 'mealBookingList'])->name('canteen.mealList');
+    Route::get('/admin/canteen/meal-list/pdf', [\App\Http\Controllers\CanteenController::class, 'mealBookingListPdf'])->name('canteen.mealListPdf');
 });
 
 require __DIR__.'/settings.php';

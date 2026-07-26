@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Coffee, Sun, Moon, Calendar, Save, Trash2, Edit2, ListOrdered } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Coffee, Sun, Moon, Calendar, Save, Trash2, Edit2, ListOrdered, FileDown, Users, Loader2 } from 'lucide-react';
 
 interface Menu {
     day_of_week: string;
@@ -27,6 +28,23 @@ interface BookingSummary {
     total_dinner: string | number;
 }
 
+interface MealBooker {
+    name: string;
+    student_id: string;
+    department: string;
+    room: string;
+    seat: string;
+    units: number;
+}
+
+interface MealListData {
+    date: string;
+    meal: 'breakfast' | 'lunch' | 'dinner';
+    total_students: number;
+    total_units: number;
+    students: MealBooker[];
+}
+
 interface Props {
     hall: any;
     menus: Menu[];
@@ -35,6 +53,7 @@ interface Props {
 }
 
 const weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const mealLabels: Record<string, string> = { breakfast: 'Breakfast', lunch: 'Lunch', dinner: 'Dinner' };
 
 export default function CanteenAdmin({ hall, menus, costings, summaries }: Props) {
     const [activeTab, setActiveTab] = useState<'menu' | 'costing' | 'bookings'>('menu');
@@ -55,6 +74,39 @@ export default function CanteenAdmin({ hall, menus, costings, summaries }: Props
     const [costingBreakfast, setCostingBreakfast] = useState<number>(0);
     const [costingLunch, setCostingLunch] = useState<number>(0);
     const [costingDinner, setCostingDinner] = useState<number>(0);
+
+    // Meal booker list modal state
+    const [listOpen, setListOpen] = useState(false);
+    const [listLoading, setListLoading] = useState(false);
+    const [listError, setListError] = useState<string | null>(null);
+    const [listData, setListData] = useState<MealListData | null>(null);
+    const [listMeta, setListMeta] = useState<{ date: string; meal: 'breakfast' | 'lunch' | 'dinner' } | null>(null);
+
+    const mealListUrl = (date: string, meal: string) =>
+        `/admin/canteen/meal-list?date=${encodeURIComponent(date)}&meal=${meal}`;
+    const mealListPdfUrl = (date: string, meal: string) =>
+        `/admin/canteen/meal-list/pdf?date=${encodeURIComponent(date)}&meal=${meal}`;
+
+    const openBookerList = async (date: string, meal: 'breakfast' | 'lunch' | 'dinner', count: number) => {
+        if (!count) return; // nothing booked
+        setListMeta({ date, meal });
+        setListData(null);
+        setListError(null);
+        setListOpen(true);
+        setListLoading(true);
+        try {
+            const res = await fetch(mealListUrl(date, meal), {
+                headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+                credentials: 'same-origin',
+            });
+            if (!res.ok) throw new Error(`Request failed (${res.status})`);
+            setListData(await res.json());
+        } catch (e: any) {
+            setListError(e?.message || 'Could not load the list.');
+        } finally {
+            setListLoading(false);
+        }
+    };
 
     // Helpers
     const getMenuForDay = (day: string) => {
@@ -449,7 +501,7 @@ export default function CanteenAdmin({ hall, menus, costings, summaries }: Props
                             <CardTitle className="flex items-center gap-2">
                                 <ListOrdered className="w-5 h-5 text-indigo-500" /> Kitchen Booking Summary
                             </CardTitle>
-                            <CardDescription>Aggregated total units booked by all students for breakfast, lunch, and dinner.</CardDescription>
+                            <CardDescription>Aggregated total units booked by all students for breakfast, lunch, and dinner. Click any count to see who booked it and export a printable checklist (PDF).</CardDescription>
                         </CardHeader>
                         <CardContent>
                             {summaries.length === 0 ? (
@@ -472,19 +524,25 @@ export default function CanteenAdmin({ hall, menus, costings, summaries }: Props
                                                         {new Date(s.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })}
                                                     </td>
                                                     <td className="px-4 py-3 text-center">
-                                                        <Badge variant="outline" className="px-3 py-1 bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-300 dark:border-amber-900/50 font-bold text-sm">
-                                                            {s.total_breakfast} units
-                                                        </Badge>
+                                                        <button type="button" onClick={() => openBookerList(s.date, 'breakfast', Number(s.total_breakfast))} disabled={!Number(s.total_breakfast)} title="View & export the breakfast list" className="disabled:cursor-default disabled:opacity-60">
+                                                            <Badge variant="outline" className="px-3 py-1 bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-300 dark:border-amber-900/50 font-bold text-sm transition-all enabled:hover:ring-2 hover:ring-amber-400 cursor-pointer">
+                                                                {s.total_breakfast} units
+                                                            </Badge>
+                                                        </button>
                                                     </td>
                                                     <td className="px-4 py-3 text-center">
-                                                        <Badge variant="outline" className="px-3 py-1 bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/20 dark:text-rose-300 dark:border-rose-900/50 font-bold text-sm">
-                                                            {s.total_lunch} units
-                                                        </Badge>
+                                                        <button type="button" onClick={() => openBookerList(s.date, 'lunch', Number(s.total_lunch))} disabled={!Number(s.total_lunch)} title="View & export the lunch list" className="disabled:cursor-default disabled:opacity-60">
+                                                            <Badge variant="outline" className="px-3 py-1 bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/20 dark:text-rose-300 dark:border-rose-900/50 font-bold text-sm transition-all hover:ring-2 hover:ring-rose-400 cursor-pointer">
+                                                                {s.total_lunch} units
+                                                            </Badge>
+                                                        </button>
                                                     </td>
                                                     <td className="px-4 py-3 text-center">
-                                                        <Badge variant="outline" className="px-3 py-1 bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/20 dark:text-indigo-300 dark:border-indigo-900/50 font-bold text-sm">
-                                                            {s.total_dinner} units
-                                                        </Badge>
+                                                        <button type="button" onClick={() => openBookerList(s.date, 'dinner', Number(s.total_dinner))} disabled={!Number(s.total_dinner)} title="View & export the dinner list" className="disabled:cursor-default disabled:opacity-60">
+                                                            <Badge variant="outline" className="px-3 py-1 bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/20 dark:text-indigo-300 dark:border-indigo-900/50 font-bold text-sm transition-all hover:ring-2 hover:ring-indigo-400 cursor-pointer">
+                                                                {s.total_dinner} units
+                                                            </Badge>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -497,6 +555,74 @@ export default function CanteenAdmin({ hall, menus, costings, summaries }: Props
                 )}
 
             </div>
+
+            {/* Meal booker list modal */}
+            <Dialog open={listOpen} onOpenChange={setListOpen}>
+                <DialogContent className="sm:max-w-3xl max-h-[85vh] overflow-hidden flex flex-col">
+                    <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2">
+                            <Users className="w-5 h-5 text-indigo-500" />
+                            {listMeta ? `${mealLabels[listMeta.meal]} List` : 'Meal List'}
+                            {listMeta && (
+                                <span className="text-sm font-normal text-slate-500">
+                                    &middot; {new Date(listMeta.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })}
+                                </span>
+                            )}
+                        </DialogTitle>
+                    </DialogHeader>
+
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <p className="text-sm text-slate-500">
+                            {listData ? `${listData.total_students} student(s) · ${listData.total_units} unit(s)` : listLoading ? 'Loading…' : ''}
+                        </p>
+                        {listMeta && (
+                            <a href={mealListPdfUrl(listMeta.date, listMeta.meal)} target="_blank" rel="noopener noreferrer">
+                                <Button type="button" className="bg-indigo-600 hover:bg-indigo-500 text-white gap-2" disabled={!listData || listData.students.length === 0}>
+                                    <FileDown className="w-4 h-4" /> Export PDF
+                                </Button>
+                            </a>
+                        )}
+                    </div>
+
+                    <div className="overflow-y-auto">
+                        {listLoading && (
+                            <div className="flex items-center justify-center gap-2 py-10 text-slate-500">
+                                <Loader2 className="w-5 h-5 animate-spin" /> Loading list…
+                            </div>
+                        )}
+                        {listError && (
+                            <p className="text-sm text-rose-600 text-center py-10">{listError}</p>
+                        )}
+                        {!listLoading && !listError && listData && listData.students.length === 0 && (
+                            <p className="text-sm text-slate-500 text-center py-10">No students booked this meal for this date.</p>
+                        )}
+                        {!listLoading && !listError && listData && listData.students.length > 0 && (
+                            <table className="w-full text-sm text-left">
+                                <thead className="text-xs uppercase bg-slate-50 dark:bg-slate-800 text-slate-500 sticky top-0">
+                                    <tr>
+                                        <th className="px-3 py-2">#</th>
+                                        <th className="px-3 py-2">Name</th>
+                                        <th className="px-3 py-2">Student ID</th>
+                                        <th className="px-3 py-2">Room / Seat</th>
+                                        <th className="px-3 py-2 text-center">Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listData.students.map((st, i) => (
+                                        <tr key={i} className="border-b dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-900/10">
+                                            <td className="px-3 py-2 text-slate-500">{i + 1}</td>
+                                            <td className="px-3 py-2 font-semibold text-slate-700 dark:text-slate-300">{st.name}</td>
+                                            <td className="px-3 py-2 text-slate-600 dark:text-slate-400">{st.student_id}</td>
+                                            <td className="px-3 py-2 text-slate-600 dark:text-slate-400">{st.room} / {st.seat}</td>
+                                            <td className="px-3 py-2 text-center font-bold">{st.units}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
+                    </div>
+                </DialogContent>
+            </Dialog>
         </>
     );
 }

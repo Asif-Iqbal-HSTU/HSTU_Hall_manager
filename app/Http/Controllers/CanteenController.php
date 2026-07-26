@@ -218,4 +218,96 @@ class CanteenController extends Controller
 
         return back()->with('success', 'Costing deleted successfully.');
     }
+
+    /**
+     * JSON list of students who booked a given meal on a given date, for the
+     * admin's hall. Powers the clickable booking-summary counts.
+     */
+    public function mealBookingList(Request $request)
+    {
+        [$hall, $date, $meal, $bookings] = $this->mealListData($request);
+
+        return response()->json([
+            'hall' => ['id' => $hall->id, 'name' => $hall->name],
+            'date' => $date,
+            'meal' => $meal,
+            'total_students' => $bookings->count(),
+            'total_units' => $bookings->sum('units'),
+            'students' => $bookings,
+        ]);
+    }
+
+    /**
+     * Downloadable PDF checklist of students who booked a given meal on a given
+     * date. Canteen managers print it and tick people off as they collect meals.
+     */
+    public function mealBookingListPdf(Request $request)
+    {
+        [$hall, $date, $meal, $bookings] = $this->mealListData($request);
+
+        $html = view('pdf.meal-list', [
+            'hall' => $hall,
+            'date' => $date,
+            'meal' => $meal,
+            'bookings' => $bookings,
+        ])->render();
+
+        $dompdf = new \Dompdf\Dompdf(['isRemoteEnabled' => false]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $filename = str_replace(' ', '_', $hall->name) . '-' . $meal . '-' . $date . '.pdf';
+
+        return response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
+    }
+
+    /**
+     * Shared query: resolve the admin's hall, validate date+meal, and return the
+     * ordered list of bookers with their room/seat details.
+     *
+     * @return array{0:\App\Models\Hall,1:string,2:string,3:\Illuminate\Support\Collection}
+     */
+    private function mealListData(Request $request): array
+    {
+        $user = $request->user();
+        if ($user->role !== 'admin' && $user->role !== 'hall_super') abort(403);
+        if (!$user->hall_id) abort(400, 'Hall not assigned.');
+
+        $validated = $request->validate([
+            'date' => 'required|date_format:Y-m-d',
+            'meal' => 'required|in:breakfast,lunch,dinner',
+        ]);
+
+        $hall = Hall::findOrFail($user->hall_id);
+        $date = $validated['date'];
+        $meal = $validated['meal'];
+        $column = $meal . '_units';
+
+        $bookings = MealBooking::where('hall_id', $hall->id)
+            ->where('date', $date)
+            ->where($column, '>', 0)
+            ->with(['user.academic', 'user.residential.seat.room'])
+            ->get()
+            ->map(function ($booking) use ($column) {
+                $student = $booking->user;
+                $seat = optional(optional($student)->residential)->seat;
+
+                return [
+                    'name' => $student->name ?? 'Unknown',
+                    'student_id' => optional(optional($student)->academic)->student_id ?? '—',
+                    'department' => optional(optional($student)->academic)->department ?? '—',
+                    'room' => optional(optional($seat)->room)->room_number ?? '—',
+                    'seat' => optional($seat)->seat_number ?? '—',
+                    'units' => (int) $booking->{$column},
+                ];
+            })
+            ->sortBy([['room', 'asc'], ['name', 'asc']])
+            ->values();
+
+        return [$hall, $date, $meal, $bookings];
+    }
 }
