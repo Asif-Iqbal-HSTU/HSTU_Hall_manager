@@ -40,7 +40,8 @@
                     <td class="l">Academic Level</td><td>Level {{ $level }} (Yearly Hall Fee)</td></tr>
                 <tr><td class="l">Student Name</td><td>{{ $user->name }}</td>
                     <td class="l">Student ID</td><td>{{ $studentId }}</td></tr>
-                <tr><td class="l">Department</td><td colspan="3">{{ $dept }}</td></tr>
+                <tr><td class="l">Department</td><td>{{ $dept }}</td>
+                    <td class="l">Student Type</td><td>{{ $residency ?? 'Residential' }}</td></tr>
             </table>
             <div class="amount">Amount Payable: Tk. {{ $amount }} /=</div>
             <div class="banks">

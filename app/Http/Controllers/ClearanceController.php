@@ -21,12 +21,13 @@ class ClearanceController extends Controller
         $user = $request->user();
         if ($user->role !== 'student') abort(403);
 
-        $user->load('academic');
+        $user->load(['academic', 'residential']);
 
         return inertia('clearance/index', [
             'hall' => $user->hall_id ? Hall::find($user->hall_id) : null,
             'academic' => $user->academic,
             'summary' => $user->clearanceSummary(),
+            'residency' => $user->residencyKey(),
         ]);
     }
 
@@ -35,10 +36,13 @@ class ClearanceController extends Controller
     {
         $user = $request->user();
         if ($user->role !== 'student') abort(403);
-        $user->load(['academic', 'hall']);
+        $user->load(['academic', 'hall', 'residential']);
 
         $level = $this->validatedLevel($request, $user);
-        $structure = FeeStructure::where('hall_id', $user->hall_id)->where('level', $level)->first();
+        $structure = FeeStructure::where('hall_id', $user->hall_id)
+            ->where('level', $level)
+            ->where('residency', $user->residencyKey())
+            ->first();
         abort_if(! $structure, 404, 'No fee is configured for this level.');
 
         $voucherNo = $this->voucherNumber($user, $level);
@@ -50,6 +54,7 @@ class ClearanceController extends Controller
             'level' => $level,
             'amount' => $structure->amount,
             'voucherNo' => $voucherNo,
+            'residency' => $user->residencyKey() === 'residential' ? 'Residential' : 'Non-Residential (Attached)',
         ]);
 
         return $this->pdfResponse($pdf, 'Fee-Voucher-' . $voucherNo . '.pdf');
@@ -92,18 +97,20 @@ class ClearanceController extends Controller
 
         $hall = Hall::findOrFail($user->hall_id);
 
-        $structures = FeeStructure::where('hall_id', $hall->id)->orderBy('level')->get()->keyBy('level');
+        // amounts keyed as [level][residency] => amount
+        $rows = FeeStructure::where('hall_id', $hall->id)->get();
         $feeStructure = [];
         for ($level = 1; $level <= 4; $level++) {
             $feeStructure[] = [
                 'level' => $level,
-                'amount' => (float) optional($structures->get($level))->amount,
+                'residential' => (float) optional($rows->first(fn ($r) => $r->level === $level && $r->residency === 'residential'))->amount,
+                'non_residential' => (float) optional($rows->first(fn ($r) => $r->level === $level && $r->residency === 'non_residential'))->amount,
             ];
         }
 
         $students = User::where('hall_id', $hall->id)
             ->where('role', 'student')
-            ->with(['academic', 'feePayments'])
+            ->with(['academic', 'feePayments', 'residential'])
             ->get()
             ->map(function ($s) {
                 $level = (int) optional($s->academic)->level;
@@ -113,6 +120,7 @@ class ClearanceController extends Controller
                     'student_id' => optional($s->academic)->student_id ?? '—',
                     'department' => optional($s->academic)->department ?? '—',
                     'level' => $level ?: null,
+                    'residency' => $s->residencyKey(),
                     'paid_levels' => $paidLevels,
                     'current_paid' => $level ? in_array($level, $paidLevels, true) : false,
                 ];
@@ -183,15 +191,20 @@ class ClearanceController extends Controller
 
         $validated = $request->validate([
             'level' => 'required|integer|min:1|max:4',
-            'amount' => 'required|numeric|min:0',
+            'residential' => 'required|numeric|min:0',
+            'non_residential' => 'required|numeric|min:0',
         ]);
 
         FeeStructure::updateOrCreate(
-            ['hall_id' => $user->hall_id, 'level' => $validated['level']],
-            ['amount' => $validated['amount']]
+            ['hall_id' => $user->hall_id, 'level' => $validated['level'], 'residency' => 'residential'],
+            ['amount' => $validated['residential']]
+        );
+        FeeStructure::updateOrCreate(
+            ['hall_id' => $user->hall_id, 'level' => $validated['level'], 'residency' => 'non_residential'],
+            ['amount' => $validated['non_residential']]
         );
 
-        return back()->with('success', 'Fee amount for Level ' . $validated['level'] . ' updated.');
+        return back()->with('success', 'Fee amounts for Level ' . $validated['level'] . ' updated.');
     }
 
     // ==========================================================

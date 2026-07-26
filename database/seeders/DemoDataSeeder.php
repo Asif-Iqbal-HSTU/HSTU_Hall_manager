@@ -110,8 +110,14 @@ class DemoDataSeeder extends Seeder
             'Friday'    => ['Luchi, Halwa', 'Rice, Mutton Curry, Dal, Borhani', 'Rice, Egg Curry, Vegetables'],
         ];
 
-        // Yearly hall fee per level (charged in the 1st semester of each level).
-        $feeByLevel = [1 => 3000, 2 => 3000, 3 => 3500, 4 => 3500];
+        // Yearly hall fee per level (charged in the 1st semester of each level),
+        // separately for residential and non-residential (attached) students.
+        $feeByLevel = [
+            1 => ['residential' => 3000, 'non_residential' => 1500],
+            2 => ['residential' => 3000, 'non_residential' => 1500],
+            3 => ['residential' => 3500, 'non_residential' => 2000],
+            4 => ['residential' => 3500, 'non_residential' => 2000],
+        ];
 
         // Sample anonymous complaints (seeded per hall for demo).
         $sampleComplaints = [
@@ -152,9 +158,10 @@ class DemoDataSeeder extends Seeder
                 'canteen_default_dinner_price' => 50.00,
             ]);
 
-            // Fee structure (yearly hall fee per level) for this hall.
+            // Fee structure (yearly hall fee per level) for this hall — both types.
             foreach ($feeByLevel as $lvl => $amt) {
-                FeeStructure::create(['hall_id' => $hall->id, 'level' => $lvl, 'amount' => $amt]);
+                FeeStructure::create(['hall_id' => $hall->id, 'level' => $lvl, 'residency' => 'residential', 'amount' => $amt['residential']]);
+                FeeStructure::create(['hall_id' => $hall->id, 'level' => $lvl, 'residency' => 'non_residential', 'amount' => $amt['non_residential']]);
             }
 
             // ---- Hall administrator (role=admin, tied to the hall) ----------
@@ -334,7 +341,7 @@ class DemoDataSeeder extends Seeder
                             'user_id' => $studentUser->id,
                             'hall_id' => $hall->id,
                             'level' => $lvl,
-                            'amount' => $feeByLevel[$lvl],
+                            'amount' => $feeByLevel[$lvl]['residential'], // allocated students are residential
                             'payment_method' => 'offline',
                             'bank_name' => 'Sonali Bank PLC, HSTU Branch',
                             'transaction_ref' => 'TXN' . $studentSerial . $lvl . '00',

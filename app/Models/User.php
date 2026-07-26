@@ -74,6 +74,7 @@ class User extends Authenticatable
         }
 
         $structures = FeeStructure::where('hall_id', $this->hall_id)
+            ->where('residency', $this->residencyKey())
             ->whereIn('level', range(1, $currentLevel))
             ->pluck('amount', 'level');
         $payments = $this->feePayments()->whereIn('level', range(1, $currentLevel))->get()->keyBy('level');
@@ -90,6 +91,15 @@ class User extends Authenticatable
         }
 
         return $rows;
+    }
+
+    /**
+     * Fee residency bucket for this student: 'residential' or 'non_residential'
+     * (attached). Non-residential is the default when no seat is allocated.
+     */
+    public function residencyKey(): string
+    {
+        return optional($this->residential)->status === 'Residential' ? 'residential' : 'non_residential';
     }
 
     /** @use HasFactory<UserFactory> */

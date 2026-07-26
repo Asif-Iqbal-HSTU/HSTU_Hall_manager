@@ -63,7 +63,10 @@ class DashboardController extends Controller
             $clearance = null;
             if ($user->academic && $user->hall_id) {
                 $level = (int) $user->academic->level;
-                $structure = \App\Models\FeeStructure::where('hall_id', $user->hall_id)->where('level', $level)->first();
+                $structure = \App\Models\FeeStructure::where('hall_id', $user->hall_id)
+                    ->where('level', $level)
+                    ->where('residency', $user->residencyKey())
+                    ->first();
                 $clearance = [
                     'level' => $level,
                     'amount' => (float) optional($structure)->amount,

@@ -24,9 +24,11 @@ interface Props {
     hall: any;
     academic: any;
     summary: Row[];
+    residency: 'residential' | 'non_residential';
 }
 
-export default function ClearanceIndex({ hall, academic, summary }: Props) {
+export default function ClearanceIndex({ hall, academic, summary, residency }: Props) {
+    const residencyLabel = residency === 'residential' ? 'Residential' : 'Non-Residential (Attached)';
     const { flash } = usePage().props as any;
     useEffect(() => {
         if (flash?.success) toast.success(flash.success);
@@ -59,6 +61,9 @@ export default function ClearanceIndex({ hall, academic, summary }: Props) {
                         <Wallet className="w-7 h-7 text-indigo-500" /> Hall Fee &amp; Clearance
                     </h1>
                     <p className="text-slate-500 mt-1">{hall.name} — {academic.department}, Level {currentLevel}</p>
+                    <div className="mt-3">
+                        <Badge variant="outline" className="text-xs">Fee type: {residencyLabel}</Badge>
+                    </div>
                 </div>
 
                 {/* Current level highlight */}
