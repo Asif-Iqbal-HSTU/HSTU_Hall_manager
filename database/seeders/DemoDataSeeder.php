@@ -64,6 +64,12 @@ class DemoDataSeeder extends Seeder
             'Habiba Khatun', 'Lamia Islam', 'Nafisa Tabassum', 'Umme Habiba', 'Sanjida Akter',
             'Rabeya Basri', 'Maliha Rahman', 'Farhana Yasmin', 'Tasnim Ara', 'Mitu Rani Roy',
         ];
+        // First/last name pools to generate many varied applicant names.
+        $maleFirstNames = ['Abdur', 'Rafiul', 'Sajid', 'Nahid', 'Tariqul', 'Shakil', 'Ariful', 'Mahfuz', 'Sohel', 'Rana', 'Jubair', 'Anisur', 'Faruk', 'Masud', 'Tanmoy', 'Emon', 'Shuvo', 'Nazmul', 'Rezaul', 'Sohag'];
+        $maleLastNames = ['Rahman', 'Islam', 'Hossain', 'Ahmed', 'Hasan', 'Kabir', 'Chowdhury', 'Miah', 'Sarkar', 'Uddin', 'Alam', 'Karim'];
+        $femaleFirstNames = ['Sadia', 'Nusrat', 'Tasnia', 'Ruma', 'Sharmin', 'Jarin', 'Antara', 'Mahiya', 'Sumona', 'Rifa', 'Tamanna', 'Anika', 'Proma', 'Meherun', 'Sabikun', 'Farzana', 'Nishat', 'Oishi', 'Bristy', 'Moriom'];
+        $femaleLastNames = ['Akter', 'Jahan', 'Sultana', 'Islam', 'Khatun', 'Begum', 'Ferdous', 'Yasmin', 'Tabassum', 'Rahman', 'Parvin', 'Nahar'];
+
         $maleProvosts = [
             'Prof. Dr. Md. Abdul Karim', 'Prof. Dr. Mohammad Ali Hossain', 'Prof. Dr. Shahidul Islam',
             'Prof. Dr. A. K. M. Rezaul Karim', 'Prof. Dr. Bidhan Chandra Roy',
@@ -140,6 +146,7 @@ class DemoDataSeeder extends Seeder
         $maleHallIndex = 0;
         $femaleHallIndex = 0;
         $studentSerial = 0;      // global running serial for names/ids
+        $applicantSerial = 0;    // global running serial for extra applicants
         $now = Carbon::now();
 
         foreach ($halls as $hi => $hall) {
@@ -352,6 +359,84 @@ class DemoDataSeeder extends Seeder
                         ]);
                     }
                 }
+            }
+
+            // ---- Extra non-residential applicants (pending seat applications) ----
+            // Populates the admin dashboard's "Seat Applications" table with a
+            // long, varied list so filtering/sorting (CGPA, distance, income)
+            // can be tested. All are non-residential and awaiting allocation.
+            $firstPool = $isMale ? $maleFirstNames : $femaleFirstNames;
+            $lastPool = $isMale ? $maleLastNames : $femaleLastNames;
+            for ($ap = 0; $ap < 12; $ap++) {
+                $applicantSerial++;
+                $name = $firstPool[$applicantSerial % count($firstPool)] . ' ' . $lastPool[($applicantSerial * 7) % count($lastPool)];
+                $dept = $departments[($ap + $hi) % count($departments)];
+                $level = ($ap % 4) + 1;
+                $admissionYear = 2025 - $level;
+                $semester = $ap % 2 === 0 ? 'I' : 'II';
+                $cgpa = round(2.50 + (($applicantSerial * 13) % 146) / 100, 2);      // 2.50 .. 3.95
+                $income = 80000 + (($applicantSerial * 23) % 52) * 10000;             // 80k .. 590k
+                $studentId = sprintf('%02d%02d%03d', $admissionYear % 100, $dept['code'], 500 + $applicantSerial);
+                $district = $districtCycle[($applicantSerial * 3) % count($districtCycle)];
+                $distance = (int) ($distanceByDistrict[$district] ?? 0);
+
+                $applicant = User::create([
+                    'name' => $name,
+                    'email' => $studentId . '@student.hstu.ac.bd',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('password'),
+                    'role' => 'student',
+                    'hall_id' => $hall->id,
+                ]);
+
+                StudentAcademic::create([
+                    'user_id' => $applicant->id,
+                    'student_id' => $studentId,
+                    'department' => $dept['name'],
+                    'degree' => $dept['degree'],
+                    'level' => $level,
+                    'semester' => $semester,
+                    'current_cgpa' => $cgpa,
+                ]);
+
+                StudentAddress::create([
+                    'user_id' => $applicant->id,
+                    'perm_district' => $district,
+                    'perm_upazilla' => $district . ' Sadar',
+                    'perm_village_area' => 'Village ' . chr(65 + ($ap % 6)) . ', ' . $district,
+                    'pres_district' => $district,
+                    'pres_upazilla' => $district . ' Sadar',
+                    'pres_village_area' => 'Village ' . chr(65 + ($ap % 6)) . ', ' . $district,
+                    'distance_from_home' => $distance,
+                ]);
+
+                StudentGuardian::create([
+                    'user_id' => $applicant->id,
+                    'father_name' => $fatherNames[$applicantSerial % count($fatherNames)],
+                    'mother_name' => $motherNames[$applicantSerial % count($motherNames)],
+                    'guardian_name' => $fatherNames[$applicantSerial % count($fatherNames)],
+                    'guardian_occupation' => $occupations[$applicantSerial % count($occupations)],
+                    'annual_income_amount' => $income,
+                ]);
+
+                StudentResidential::create([
+                    'user_id' => $applicant->id,
+                    'status' => 'Non-Residential',
+                    'hall_id' => $hall->id,
+                    'seat_id' => null,
+                    'staying_from' => null,
+                ]);
+
+                SeatApplication::create([
+                    'student_id' => $applicant->id,
+                    'hall_id' => $hall->id,
+                    'status' => 'pending',
+                    'cgpa' => $cgpa,
+                    'guardian_income' => $income,
+                    'distance_from_home' => $distance,
+                    'created_at' => $now->copy()->subDay(),
+                    'updated_at' => $now->copy()->subDay(),
+                ]);
             }
 
             // ---- Sample anonymous complaints --------------------------------

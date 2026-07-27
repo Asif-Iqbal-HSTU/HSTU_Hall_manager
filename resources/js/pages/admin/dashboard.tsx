@@ -240,7 +240,7 @@ export default function AdminDashboard() {
                                 <tbody>
                                     {sortedApplications.map(app => (
                                         <tr key={app.id} className="border-b dark:border-gray-700">
-                                            <td className="px-4 py-3">{app.student?.user?.name} ({app.student?.student_id})</td>
+                                            <td className="px-4 py-3">{app.student?.name} ({app.student?.academic?.student_id ?? 'N/A'})</td>
                                             <td className="px-4 py-3">{app.cgpa}</td>
                                             <td className="px-4 py-3">{app.distance_from_home}</td>
                                             <td className="px-4 py-3">{app.guardian_income}</td>
