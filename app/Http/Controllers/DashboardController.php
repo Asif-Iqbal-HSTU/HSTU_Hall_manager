@@ -26,7 +26,13 @@ class DashboardController extends Controller
             $rooms = \App\Models\Room::whereHas('floor', function($q) use ($hall) {
                 $q->where('hall_id', $hall->id);
             })->where('purpose', 'residential')->with(['seats' => function($q) {
-                $q->with(['studentResidential.user']);
+                $q->with([
+                    'studentResidential.user.academic',
+                    'studentResidential.user.address',
+                    'studentResidential.user.guardian',
+                    'studentResidential.hall',
+                    'studentResidential.seat.room',
+                ]);
             }])->get();
 
             // Load pending applications for the current period
