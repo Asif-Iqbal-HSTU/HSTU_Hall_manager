@@ -11,7 +11,7 @@
 # =============================================================================
 # Stage 1: Base PHP image with all runtime extensions (shared by build + prod)
 # =============================================================================
-FROM php:8.4-fpm-alpine AS base
+FROM php:8.4.27-fpm-alpine AS base
 
 # Install system dependencies and PHP extensions in a single layer
 RUN apk add --no-cache \
